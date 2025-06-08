@@ -19,12 +19,14 @@ This site serves as a platform for sharing my notes, tutorials and practical ins
 ### Projects
 
 **Python Packages:**
+
 - [ek-data-structures](https://pypi.org/project/ek-data-structures/)  
   Implements key data structures such as arrays, stacks, queues, linked lists, trees, and graphs.
 - [ek-ml-package](https://pypi.org/project/ek-ml-package/)  
   Collection of core machine learning algorithms implemented from scratch with NumPy.
 
 **Android Mobile Applications:**
+
 - [Campus Aide](https://play.google.com/store/apps/details?id=com.ek.unix)  
   Brings all essential campus services together — from social features and memos to shopping and advertisements.
 - [ViewPoint Status Saver](https://play.google.com/store/apps/details?id=com.ek.allstatussaver)  
