@@ -1,0 +1,1917 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="linear_regression/">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Machine Learning</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-machine-learning" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Machine Learning" class="md-header__button md-logo" aria-label="Machine Learning" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Machine Learning
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introduction
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="linear_regression/" class="md-tabs__link">
+          
+  
+  
+  Supervised Learning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="kmeans/" class="md-tabs__link">
+          
+  
+  
+  Unsupervised Learning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="activation_function/" class="md-tabs__link">
+          
+  
+  
+  Supporting Concepts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="notebooks/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Notebook Gallery
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About Author
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Machine Learning" class="md-nav__button md-logo" aria-label="Machine Learning" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Machine Learning
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Supervised Learning
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Supervised Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="linear_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear Regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logistic_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Logistic Regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gaussian_discriminant_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gaussian Discriminant Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="knn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    K-Nearest Neighbors (KNN)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="perceptron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Perceptron Algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="neural_network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Neural Networks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unsupervised Learning
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Unsupervised Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kmeans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    K-Means Clustering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Principal Component Analysis (PCA)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Supporting Concepts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Supporting Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="activation_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Activation Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="loss_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Loss Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notebooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Notebook Gallery
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About Author
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="introduction-to-machine-learning">Introduction to Machine Learning</h1>
+<p>This documentation covers the fundamental concepts and theory behind key machine learning algorithms. It is designed to provide clear explanations and mathematical intuition to help deepen your understanding of how these algorithms work.</p>
+<p>Use this as a starting point to explore the core ideas and techniques that power many machine learning applications today.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#linear-regression">Linear Regression</a></li>
+<li><a href="#linear-model-evaluation">Linear Model Evaluation</a></li>
+<li><a href="#k-fold-cross-validation">K-Fold Cross Validation</a></li>
+<li><a href="#bias-variance-decomposition">Bias-Variance Decomposition</a></li>
+<li><a href="#maximum-likelihood-estimation">Maximum Likelihood Estimation</a></li>
+<li><a href="#examples-mle-leading-to-common-loss-functions">Examples: MLE Leading to Common Loss Functions</a></li>
+<li><a href="#maximum-a-posteriori-map-estimation">Maximum A Posteriori (MAP) Estimation</a></li>
+<li><a href="#gradient-descent-from-first-order-taylor-approximation">Gradient Descent from First-Order Taylor Approximation</a></li>
+<li><a href="#gradient-descent-gd-convergence">Gradient Descent (GD) Convergence</a></li>
+<li><a href="#stochastic-gradient-descent-sgd">Stochastic Gradient Descent (SGD)</a></li>
+<li><a href="#mini-batch-stochastic-gradient-descent">Mini-Batch Stochastic Gradient Descent</a></li>
+<li><a href="#stochastic-gradient-descent-sgd-with-momentum">Stochastic Gradient Descent (SGD) with Momentum</a></li>
+<li><a href="#neural-network">Neural Network</a></li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>In supervised machine learning we usually start with the dataset given as:</p>
+<div class="arithmatex">\[
+\mathcal{D} = \left\{ (x_i, y_i) \right\}_{i=1}^{n}
+\]</div>
+<p>Where <span class="arithmatex">\(x_i \in \mathcal{X}, y_i \in \mathcal{Y}, (x_i, y_i) \in \mathcal{X} \times \mathcal{Y}\)</span> and <span class="arithmatex">\(n\)</span> is the number of samples.</p>
+<p><span class="arithmatex">\(\mathcal{X}\)</span> is known as the input space while <span class="arithmatex">\(\mathcal{Y}\)</span> is the output space.</p>
+<p>If <span class="arithmatex">\(\mathcal{Y}\)</span> is a finite set of discrete labels then the task is <strong>Classification</strong>. But if <span class="arithmatex">\(\mathcal{Y} \in \mathbb{R}\)</span> then the task is <strong>Regression</strong>.</p>
+<p>In ML we are looking for the best <span class="arithmatex">\(F\)</span> such that:</p>
+<div class="arithmatex">\[
+F: \mathcal{X} \mapsto \mathcal{Y}
+\]</div>
+<p><span class="arithmatex">\(F\)</span> is known as a <strong>function</strong>, <strong>mapping</strong>, or <strong>hypothesis</strong>. And where <span class="arithmatex">\(F\)</span> comes from is known as the <strong>hypothesis class/space</strong> <span class="arithmatex">\(\mathcal{H}\)</span>, i.e.,</p>
+<div class="arithmatex">\[
+F \in \mathcal{H}
+\]</div>
+<p>We also have an objective function (or cost function/criterion) where our main task is to optimize it.</p>
+<p>Now we look at one of the common hypothesis spaces known as <strong>linear mapping</strong>, which leads us to <strong>linear regression</strong>.</p>
+<h2 id="linear-regression">Linear Regression</h2>
+<p>Here our hypothesis is given as:</p>
+<div class="arithmatex">\[
+f(x) = w^\top x
+\]</div>
+<p>where <span class="arithmatex">\(x\)</span> is known as the input data and <span class="arithmatex">\(w\)</span> is the weights (coefficients).</p>
+<p>From the above linear mapping, we can have our objective function as:</p>
+<div class="arithmatex">\[
+L(w) = \min_w \;  \left\| w^\top x - y \right\|^2
+\]</div>
+<p>Now we can find the analytic solution <span class="arithmatex">\(\hat{w}\)</span> which minimizes our objective function <span class="arithmatex">\(L(w)\)</span>. To solve, we will find the derivative <span class="arithmatex">\(L(w)\)</span> (gradient) then equate it to zero. Let&rsquo;s solve:</p>
+<div class="arithmatex">\[
+\begin{align*}
+    L(w) &amp;= \left\| Xw - Y \right\|^2 \\
+         &amp;= (Xw - Y)^\top (Xw - Y) \\
+         &amp;= w^\top X^\top X w - w^\top X^\top Y - Y^\top X w + Y^\top Y \\
+         &amp;= w^\top X^\top X w - w^\top X^\top Y - Y^\top X w + Y^\top Y
+\end{align*}
+\]</div>
+<p>Now we find the gradient w.r.t <span class="arithmatex">\(w\)</span>:</p>
+<div class="arithmatex">\[
+\begin{align*}
+\frac{d L(w)}{d w} &amp;= X^\top X w + (w^\top X^\top X)^\top - X^\top Y - (Y^\top X)^\top \\
+                   &amp;= X^\top X w + X^\top X w - X^\top Y - X^\top Y \\
+                   &amp;= 2 X^\top X w - 2 X^\top Y
+\end{align*}
+\]</div>
+<p>Therefore, our gradient <span class="arithmatex">\(\nabla_w L(w)\)</span> is given as:</p>
+<div class="arithmatex">\[
+\nabla_w L(w) = 2 X^\top X w - 2 X^\top Y
+\]</div>
+<p>Taking <span class="arithmatex">\(\nabla_w L(w) = 0\)</span>:</p>
+<div class="arithmatex">\[
+\begin{align*}
+    &amp; 2 (X^\top X w - X^\top Y) = 0\\
+    &amp; X^\top X w =  X^\top Y \\
+    &amp; \hat{w} = (X^\top X)^{-1} X^\top Y
+\end{align*}
+\]</div>
+<p>Therefore, the analytical solution <span class="arithmatex">\(\hat{w}\)</span> that minimizes <span class="arithmatex">\(L(w)\)</span> is:</p>
+<div class="arithmatex">\[
+\hat{w} = (X^\top X)^{-1} X^\top Y
+\]</div>
+<p>But the above solution exists only if <span class="arithmatex">\(X^\top X\)</span> is invertible, i.e., the inverse exists.</p>
+<p>If the inverse doesn&rsquo;t exist, we introduce a regularizer. Let&rsquo;s use the <span class="arithmatex">\(L_2\)</span> regularizer (also known as ridge), where we will have a new objective function given as:</p>
+<div class="arithmatex">\[
+L_{\text{ridge}}(w) = \min_w \;  \left\| w^\top X - Y \right\|_2^2 + \lambda  \left\| w \right\|_2^2
+\]</div>
+<p>Where <span class="arithmatex">\(\lambda &gt; 0\)</span> (positive), since if it&rsquo;s negative and <span class="arithmatex">\(\left\| w \right\|_2^2\)</span> is too big, then our <span class="arithmatex">\(L_{\text{ridge}}(w)\)</span> will not be bounded.</p>
+<p>Let&rsquo;s find the analytic solution of <span class="arithmatex">\(L_{\text{ridge}}(w)\)</span>:</p>
+<div class="arithmatex">\[
+\begin{align*}
+    L_{\text{ridge}}(w) &amp;= \left\| Xw - Y \right\|_2^2 + \lambda  \left\| w \right\|_2^2\\
+                        &amp;= (Xw - Y)^\top (Xw - Y) + \lambda w^\top w \\
+                        &amp;= w^\top X^\top X w - w^\top X^\top Y - Y^\top X w + Y^\top Y + \lambda w^\top w
+\end{align*}
+\]</div>
+<p>Now we find the gradient of <span class="arithmatex">\(L_{\text{ridge}}(w)\)</span> w.r.t <span class="arithmatex">\(w\)</span>:</p>
+<div class="arithmatex">\[
+\begin{align*}
+\frac{d L_{\text{ridge}}(w)}{d w} &amp;= X^\top X w + (w^\top X^\top X)^\top - X^\top Y - (Y^\top X)^\top + \lambda w + \lambda w \\
+                                  &amp;= X^\top X w + X^\top X w - X^\top Y - X^\top Y + 2\lambda w \\
+                                  &amp;= 2 X^\top X w - 2 X^\top Y + 2\lambda w
+\end{align*}
+\]</div>
+<p>Therefore, our gradient <span class="arithmatex">\(\nabla_w L_{\text{ridge}}(w)\)</span> is given as:</p>
+<div class="arithmatex">\[
+\nabla_w L_{\text{ridge}}(w) = 2 X^\top X w - 2 X^\top Y + 2\lambda w
+\]</div>
+<p>Taking <span class="arithmatex">\(\nabla_w L_{\text{ridge}}(w) = 0\)</span>:</p>
+<div class="arithmatex">\[
+\begin{align*}
+    &amp; 2 (X^\top X w - X^\top Y + \lambda w) = 0\\
+    &amp; X^\top X w + \lambda w = X^\top Y\\
+    &amp; (X^\top X + \lambda I)w =  X^\top Y \\
+    &amp; \hat{w} = (X^\top X + \lambda I)^{-1} X^\top Y
+\end{align*}
+\]</div>
+<p>Therefore, the analytical solution <span class="arithmatex">\(\hat{w}\)</span> that minimizes <span class="arithmatex">\(L_{\text{ridge}}(w)\)</span> is:</p>
+<div class="arithmatex">\[
+\hat{w} = (X^\top X + \lambda I)^{-1} X^\top Y
+\]</div>
+<p>The above solution from ridge regression always exists since <span class="arithmatex">\(X^\top X + \lambda I\)</span> is always invertible.</p>
+<h2 id="linear-model-evaluation">Linear Model Evaluation</h2>
+<p>For linear regression most time we evaluate our model using mean square error (mse).</p>
+<p>Given the dataset:</p>
+<div class="arithmatex">\[
+\mathcal{D} = \left\{ (x_i, y_i) \right\}_{i=1}^{n}
+\]</div>
+<p>and a model <span class="arithmatex">\(f(x) = w^\top x\)</span>, the <strong>Mean Squared Error (MSE)</strong> is defined as:</p>
+<div class="arithmatex">\[
+Loss_{MSE} = \frac{1}{n} \sum_{i=1}^{n} \left( f(x_i) - y_i \right)^2 = \frac{1}{n} \sum_{i=1}^{n} \left( w^\top x_i - y_i \right)^2
+\]</div>
+<p>Given the loss/criterion abive our aim is to find a function <span class="arithmatex">\(\hat{f}\)</span> which minimizes our loss i.e
+$$
+\hat{f} = \arg\min_{f \in \mathcal{H}} \; \frac{1}{n} \sum_{i=1}^{n} \left( f(x_i) - y_i \right)^2
+$$ 
+where;</p>
+<ul>
+<li><span class="arithmatex">\(f\)</span> - hypothesis</li>
+<li><span class="arithmatex">\(\mathcal{H}\)</span> - hypothesis class</li>
+<li><span class="arithmatex">\(\hat{f}\)</span> - best in <span class="arithmatex">\(\mathcal{H}\)</span></li>
+<li><span class="arithmatex">\(\frac{1}{n} \sum_{i=1}^{n} \left( f(x_i) - y_i \right)^2\)</span> - emperical risk</li>
+</ul>
+<p>We have two type of risk:</p>
+<h3 id="1-emperical-risk">1). <strong>Emperical Risk</strong></h3>
+<p>We get it from our train dataset, which is given as our loss i.e
+ $$
+ R_{train} = \frac{1}{n} \sum_{i=1}^{n} \left( f(x_i) - y_i \right)^2
+ $$</p>
+<ul>
+<li>This is also called <strong>training error</strong> or <strong>empirical risk</strong> <span class="arithmatex">\(\hat{R}(f)\)</span>.</li>
+<li>It’s computable since we have the training dataset <span class="arithmatex">\(\mathcal{D} = \{(x_i, y_i)\}_{i=1}^n\)</span>.</li>
+</ul>
+<h3 id="2-true-risk">2). <strong>True Risk</strong></h3>
+<div class="arithmatex">\[
+ R = \mathbb{E}_{(x,y)\sim \tau} \left[ (f(x) - y)^2 \right]
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\tau\)</span> is the <strong>true (unknown) data distribution</strong>.</li>
+<li>This is called <strong>expected risk</strong> or <strong>generalization error</strong>.</li>
+<li>We usually can&rsquo;t compute this directly because we don’t know the true distribution <span class="arithmatex">\(\tau\)</span>, only samples from it (the dataset).</li>
+</ul>
+<h3 id="why-dont-we-use-empirical-risk-to-evaluate-our-model-performance"><strong>Why don&rsquo;t we use Empirical Risk to evaluate our model performance?</strong></h3>
+<p>This is because <strong>Empirical (Training) Risk</strong> is typically a <strong>biased (optimistic) estimator</strong> of the <strong>True Risk</strong> as it underestimates how well the model will perform on unseen data.</p>
+<p><strong>Proof</strong></p>
+<p>Let <span class="arithmatex">\(f_{\mathcal{H}}\)</span> be the best-in-class predictor that minimizes the <strong>true risk</strong>, i.e.,</p>
+<div class="arithmatex">\[
+f_{\mathcal{H}} = \arg\min_{f \in \mathcal{H}} R(f) = \arg\min_{f \in \mathcal{H}} \; \mathbb{E}_{(x, y)\sim \tau} \left[ (f(x) - y)^2 \right]
+\]</div>
+<p>Let <span class="arithmatex">\(\hat{f}\)</span> be the best-in-class predictor that minimizes the <strong>empirical risk</strong>, i.e.,</p>
+<div class="arithmatex">\[
+\hat{f} = \arg\min_{f \in \mathcal{H}} R_{\text{train}}(f) = \arg\min_{f \in \mathcal{H}} \; \frac{1}{n} \sum_{i=1}^{n} \left( f(x_i) - y_i \right)^2
+\]</div>
+<p>By definition of <span class="arithmatex">\(\hat{f}\)</span>, we have:</p>
+<div class="arithmatex">\[
+R_{\text{train}}(\hat{f}) \leq R_{\text{train}}(f), \quad \forall f \in \mathcal{H}
+\]</div>
+<p>Taking the expectation over training samples (drawn from distribution <span class="arithmatex">\(\tau\)</span>):</p>
+<div class="arithmatex">\[
+\mathbb{E}_{\mathcal{D} \sim \tau} \left[ R_{\text{train}}(\hat{f}) \right] \leq \mathbb{E}_{\mathcal{D} \sim \tau} \left[ R_{\text{train}}(f) \right], \quad \forall f \in \mathcal{H}
+\]</div>
+<p>However, we can go further to have</p>
+<div class="arithmatex">\[
+\mathbb{E} \left[ R_{\text{train}}(\hat{f}) \right] &lt; \mathbb{E} \left[ R(\hat{f}) \right]
+\]</div>
+<p>That is, the empirical risk of <span class="arithmatex">\(\hat{f}\)</span> evaluated on the same data it was trained on is generally <strong>less</strong> than the true/generalization risk of <span class="arithmatex">\(\hat{f}\)</span> on unseen data. Therefore:</p>
+<div class="arithmatex">\[
+R_{\text{train}}(\hat{f}) \text{ is a biased estimate of } R(\hat{f})
+\]</div>
+<h3 id="since-we-have-seen-that-empirical-risk-is-a-biased-estimate-of-the-true-risk-we-introduce-the-concept-of-the-test-dataset-to-evaluate-our-models-generalization-performance"><strong>Since we have seen that Empirical Risk is a biased estimate of the True Risk</strong>, we introduce the concept of the <strong>test dataset</strong> to evaluate our model’s generalization performance.</h3>
+<p>Given a test dataset:</p>
+<div class="arithmatex">\[
+\mathcal{D}_{\text{test}} = \left\{ (x_i, y_i) \right\}_{i=1}^{k}
+\]</div>
+<p>Then the <strong>empirical test risk</strong> is defined as:</p>
+<div class="arithmatex">\[
+R_{\text{test}} = \frac{1}{k} \sum_{i=1}^{k} \left( f(x_i) - y_i \right)^2
+\]</div>
+<p><strong>Proof:</strong></p>
+<div class="arithmatex">\[
+\begin{align*}
+\mathbb{E} \left[ R_{\text{test}} \right] &amp;= \mathbb{E} \left[ \frac{1}{k} \sum_{i=1}^{k} \left( f(x_i) - y_i \right)^2 \right] \\
+                                         &amp;= \frac{1}{k} \sum_{i=1}^{k} \mathbb{E} \left[ \left( f(x_i) - y_i \right)^2 \right] \\
+                                         &amp;= \frac{1}{k} \sum_{i=1}^{k} R \\
+                                         &amp;= \frac{1}{k} \cdot k \cdot R \\
+                                         &amp;= R
+\end{align*}
+\]</div>
+<p>Therefore,
+$$
+\mathbb{E} \left[ R_{\text{test}} \right] = R
+$$</p>
+<p>This shows that the <strong>empirical test risk</strong> is an <strong>unbiased estimate</strong> of the <strong>true risk</strong>, assuming the test data is sampled independently from the same distribution <span class="arithmatex">\(\tau\)</span> as the training data and is not used during training.</p>
+<p>Empirical Risk <strong>should not be used</strong> as a performance metric because it’s <strong>biased</strong>. It doesn&rsquo;t reflect how well the model will generalize to new, unseen data — for that, we must estimate the <strong>true risk</strong>, typically using a <strong>validation or test set</strong>.</p>
+<h2 id="k-fold-cross-validation">K-Fold Cross Validation</h2>
+<p>K-Fold Cross Validation is a <strong>model evaluation and selection technique</strong> used to estimate how well a model generalizes to unseen data. It is also used to <strong>tune hyperparameters</strong> or <strong>select the best hypothesis</strong> <span class="arithmatex">\(f \in \mathcal{H}\)</span>.</p>
+<p>Given a dataset:</p>
+<div class="arithmatex">\[
+\mathcal{D} = \left\{ (x_i, y_i) \right\}_{i=1}^{n}
+\]</div>
+<p>And a learning algorithm that finds:</p>
+<div class="arithmatex">\[
+\hat{f} = \arg\min_{f \in \mathcal{H}} \; \frac{1}{n} \sum_{i=1}^{n} \left( f(x_i) - y_i \right)^2
+\]</div>
+<p>We partition the dataset into <span class="arithmatex">\(k\)</span> folds:</p>
+<div class="arithmatex">\[
+\mathcal{D} = \{ \mathcal{D}_i \}_{i=1}^k
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(\mathcal{D}_i = \{ (x_j, y_j) \}_{j=1}^{n/k}\)</span></li>
+<li><span class="arithmatex">\(\bigcup_{i = 1}^{k} \mathcal{D}_i = \mathcal{D}\)</span></li>
+<li><span class="arithmatex">\(\mathcal{D}_i \cap \mathcal{D}_j = \emptyset \quad \forall i \neq j\)</span></li>
+</ul>
+<h3 id="how-k-fold-cross-validation-works"><strong>How K-Fold Cross Validation Works</strong></h3>
+<ol>
+<li>
+<p>Split the dataset <span class="arithmatex">\(\mathcal{D}\)</span> into <span class="arithmatex">\(k\)</span> approximately equal-sized folds:
+   $$
+   \mathcal{D}_1, \mathcal{D}_2, \dots, \mathcal{D}_k
+   $$</p>
+</li>
+<li>
+<p>For each fold <span class="arithmatex">\(i \in \{1, 2, \dots, k\}\)</span>:</p>
+<ul>
+<li><strong>Training set</strong>: <span class="arithmatex">\(\mathcal{D}_{\text{train}} = \mathcal{D} \setminus \mathcal{D}_i\)</span></li>
+<li><strong>Validation set</strong>: <span class="arithmatex">\(\mathcal{D}_i\)</span></li>
+<li>Train the model <span class="arithmatex">\(f_i\)</span> on <span class="arithmatex">\(\mathcal{D}_{\text{train}}\)</span></li>
+<li>
+<p>Evaluate the validation loss on <span class="arithmatex">\(\mathcal{D}_i\)</span>:</p>
+<p><span class="arithmatex">\(
+ L^{(i)} = \frac{1}{|\mathcal{D}_i|} \sum_{(x, y) \in \mathcal{D}_i} \mathcal{l}(f_i(x), y)
+ \)</span></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Average the validation losses across all folds:</p>
+<p><span class="arithmatex">\(
+  \hat{L}_{\text{cv}} = \frac{1}{k} \sum_{i=1}^{k} L^{(i)}
+  \)</span></p>
+</li>
+</ol>
+<h3 id="how-cross-validation-helps-select-better-f"><strong>How Cross Validation Helps Select Better <span class="arithmatex">\(f\)</span>:</strong></h3>
+<ol>
+<li>Provides a <strong>more reliable estimate</strong> of generalization performance on unseen data.</li>
+<li>Allows for <strong>fair comparison</strong> of different models or hyperparameters (e.g., regularization terms).</li>
+<li>Helps select the best model <span class="arithmatex">\(f^*\)</span> that minimizes the cross-validation loss:</li>
+</ol>
+<p>$$
+   f^* = \arg\min_{f \in \mathcal{H}} \; \hat{L}_{\text{cv}}(f)
+   $$</p>
+<p>You can find other cross validation techniques explanations here: </p>
+<ul>
+<li>
+<p><a href="https://www.analyticsvidhya.com/blog/2021/11/top-cross-validation-techniques-with-python-code/">Top Cross-Validation Techniques with Python Code</a></p>
+</li>
+<li>
+<p><a href="https://medium.com/@chanakapinfo/cross-validation-explained-leave-one-out-k-fold-stratified-and-time-series-cross-validation-0b59a16f2223">Cross Validation Explained — Leave One Out, K Fold, Stratified, and Time Series Cross Validation Techniques</a></p>
+</li>
+</ul>
+<h2 id="bias-variance-decomposition">Bias-Variance Decomposition</h2>
+<p>Given a dataset <span class="arithmatex">\(\mathcal{D} = \left\{ (x_i, y_i) \right\}_{i=1}^{k}\)</span></p>
+<p>Let,</p>
+<div class="arithmatex">\[
+y = f(x)+\epsilon
+\]</div>
+<p>where <span class="arithmatex">\(\epsilon\)</span> is the noise in the dataset and it&rsquo;s independent from <span class="arithmatex">\(x_i's\)</span>. Also we assume the noise <span class="arithmatex">\(\epsilon\)</span> is from a Gaussian distrubtion with mean zero and variance <span class="arithmatex">\(\sigma^2\)</span> (ie <span class="arithmatex">\(\epsilon \sim \mathcal{N}(0, \sigma^2)\)</span>).</p>
+<p>Given <span class="arithmatex">\(\hat{f}\)</span> then the True Risk is given as;</p>
+<div class="arithmatex">\[
+\begin{align*}
+\mathbb{E}\left[ (y - \hat{f}(x))^2\right] &amp;= \mathbb{E}\left[ (f(x)+\epsilon - \hat{f}(x))^2\right] \quad \text{ since } y = f(x)+\epsilon\\
+&amp;=\mathbb{E}\left[ (f(x)-\hat{f}(x))^2+2(f(x)-\hat{f}(x))\epsilon + \epsilon^2\right]\\
+&amp;=\mathbb{E}\left[(f(x)-\hat{f}(x))^2\right] +2\mathbb{E}\left[(f(x)-\hat{f}(x))\right]\mathbb{E}\left[\epsilon\right] + \mathbb{E}\left[\epsilon^2\right] \quad \text{ but } \mathbb{E}\left[\epsilon^2\right] = \sigma^2 \text{ and } \mathbb{E}\left[\epsilon\right]=0\\
+&amp;=\mathbb{E}\left[(f(x)-\hat{f}(x))^2\right] + \sigma^2 
+\end{align*}
+\]</div>
+<p>Now lets solve <span class="arithmatex">\(\mathbb{E}\left[(f(x)-\hat{f}(x))^2\right]\)</span>. Let <span class="arithmatex">\(\bar{f}\)</span> be the average predictor which is given as  <span class="arithmatex">\(\bar{f} = \mathbb{E}\left[\hat{f}(x)\right]\)</span>. Then we will have,</p>
+<div class="arithmatex">\[
+\begin{align*}
+ \mathbb{E}\left[(f(x)-\hat{f}(x))^2\right] &amp;= \mathbb{E}\left[(f(x)-\bar{f}(x)+\bar{f}(x)-\hat{f}(x))^2\right]\\
+ &amp;= \mathbb{E}\left[(f(x)-\bar{f}(x))^2+2(f(x)-\bar{f}(x))(\bar{f}(x)-\hat{f}(x))+(\bar{f}(x)-\hat{f}(x))^2\right]\\
+ &amp;= \mathbb{E}\left[(f(x)-\bar{f}(x))^2\right] + 2\mathbb{E}\left[f(x)-\bar{f}(x)\right]\mathbb{E}\left[\bar{f}(x)-\hat{f}(x)\right]+\mathbb{E}\left[(\bar{f}(x)-\hat{f}(x))^2\right]\\
+ &amp;= \mathbb{E}\left[(f(x)-\bar{f}(x))^2\right] +\mathbb{E}\left[(\bar{f}(x)-\hat{f}(x))^2\right] \quad \text{ since } \mathbb{E}\left[\bar{f}(x)-\hat{f}(x)\right] = 0 \text{ as } \bar{f}(x) = \mathbb{E}\left[\hat{f}(x)\right]
+\end{align*}
+\]</div>
+<p>Therefore our final equestion can be expressed as;</p>
+<div class="arithmatex">\[
+\begin{align*}
+ \mathbb{E}\left[ (y - \hat{f}(x))^2\right] &amp;= \mathbb{E}\left[(f(x)-\bar{f}(x))^2\right] +\mathbb{E}\left[(\bar{f}(x)-\hat{f}(x))^2\right] + \sigma^2\\
+ &amp;= \text{Bias}^2 + \text{Variance} + \text{Noise}
+\end{align*}
+\]</div>
+<p>where;</p>
+<div class="arithmatex">\[
+\mathbb{E}_{\mathcal{D}, \epsilon}[(y - \hat{f}(x))^2] = \underbrace{(f(x) - \bar{f}(x))^2}_{\text{Bias}^2} + \underbrace{\mathbb{E}_{\mathcal{D}}[(\hat{f}(x) - \bar{f}(x))^2]}_{\text{Variance}} + \underbrace{\sigma^2}_{\text{Noise}}
+\]</div>
+<p>Thus the Bias Variance threshold is given as;</p>
+<div class="arithmatex">\[
+\text{True Risk} = \text{Bias}^2 + \text{Variance} + \text{Noise}
+\]</div>
+<table>
+<thead>
+<tr>
+<th>High Bias</th>
+<th>High Variance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- Underfitting (high training and test error)</td>
+<td>- Overfitting (low training error, high test error)</td>
+</tr>
+<tr>
+<td>- Model has not learned enough</td>
+<td>- Model is complex</td>
+</tr>
+<tr>
+<td>** Train longer</td>
+<td>- Small training data</td>
+</tr>
+<tr>
+<td>- Model is too simple</td>
+<td>** Feature selection. <a href="https://www.analyticsvidhya.com/blog/2016/12/introduction-to-feature-selection-methods-with-an-example-or-how-to-select-the-right-variables/">1</a>, <a href="https://github.com/Younes-Charfaoui/Feature-Selection-Techniques">2</a>, <a href="https://medium.com/@debopamdeycse19/feature-selection-techniques-in-machine-learning-00a261e2574a">3</a></td>
+</tr>
+<tr>
+<td>** Increase the features</td>
+<td>** Dimesionality Reduction</td>
+</tr>
+<tr>
+<td>** Increase the features</td>
+<td>** Data Augmentation</td>
+</tr>
+</tbody>
+</table>
+<p>The above table compares high bias (underfitting) and high variance (overfitting). Entries marked with <code>**</code> indicate common <strong>solutions</strong> to address each issue.</p>
+<h2 id="maximum-likelihood-estimation">Maximum Likelihood Estimation</h2>
+<p>Here we are going to use the concept of MLE to find negative log-likelihood and also come up with some of the objective/loss functions.</p>
+<p>Given a dataset </p>
+<div class="arithmatex">\[
+\begin{align*}
+&amp;\mathcal{D} = \left\{ (x_i, y_i) \right\}_{i=1}^{n}\\
+&amp;X = \left\{ x_i\right\}_{i=1}^{n}\\
+&amp;Y = \left\{ y_i\right\}_{i=1}^{n}\\
+\end{align*}
+\]</div>
+<p>Let <span class="arithmatex">\(h_{w} \in \mathcal{H}\)</span> i.e a function <span class="arithmatex">\(h\)</span> with parameter <span class="arithmatex">\(w\)</span> in hypothesis space <span class="arithmatex">\(\mathcal{H}\)</span>. If we assuming the outputs are drawn independently from a distribution <span class="arithmatex">\(P(y_i | x_i; w)\)</span>,the <strong>likelihood</strong> of the data is:</p>
+<div class="arithmatex">\[
+\begin{align*}
+\mathcal{L}(w) &amp;= P(Y | X; w)\\
+               &amp;= \prod_{i=1}^{n} P_i(y_i | x_i; w) \quad \text{ since they are independent}\\
+               &amp;= \prod_{i=1}^{n} P(y_i | x_i; w) \quad \text{ since they are identically ditributed}
+\end{align*}
+\]</div>
+<p>Since the product of probabilities tends to zero or are very small (i.e between 0 and 1) we take its <span class="arithmatex">\(log\)</span> as <span class="arithmatex">\(log\)</span> is an increasing function to have <strong>log-likelihood</strong>:</p>
+<div class="arithmatex">\[
+\begin{align*}
+\log \mathcal{L}(w) &amp;= \log \prod_{i=1}^{n} P(y_i | x_i; w)\\
+                    &amp;= \sum_{i=1}^{n} \log P(y_i | x_i; w)
+\end{align*}
+\]</div>
+<p>Then, the <strong>Maximum Likelihood Estimation (MLE)</strong> objective is:</p>
+<div class="arithmatex">\[
+\begin{align*}
+w^* &amp;= \arg\max_w \log \mathcal{L}(w)\\
+    &amp;= \arg\max_w \sum_{i=1}^{n} \log P(y_i | x_i; w)\\
+    &amp;= \arg\min_w \underbrace{- \sum_{i=1}^{n} \log P(y_i | x_i; w)}_{\text{negative log-likelihood (NLL)}}
+\end{align*}
+\]</div>
+<p>Or equivalently, we minimize the <strong>negative log-likelihood</strong> (NLL):</p>
+<div class="arithmatex">\[
+NLL(w) = -\sum_{i=1}^{k} \log P(y_i | x_i; w)
+\]</div>
+<h2 id="examples-mle-leading-to-common-loss-functions">Examples: MLE Leading to Common Loss Functions</h2>
+<h3 id="1-mean-squared-error-mse">1. Mean Squared Error (MSE)</h3>
+<p>Given a dataset:</p>
+<div class="arithmatex">\[
+\mathcal{D} = \{(x_i, y_i)\}_{i=1}^n
+\]</div>
+<p>Assume that the target variable <span class="arithmatex">\(y_i\)</span> is generated as:</p>
+<div class="arithmatex">\[
+y_i = w^\top x_i + \epsilon_i
+\]</div>
+<p>where <span class="arithmatex">\(\epsilon_i \sim \mathcal{N}(0, \sigma^2)\)</span>.
+So the conditional probability of <span class="arithmatex">\(y_i\)</span> given <span class="arithmatex">\(x_i\)</span> is:</p>
+<div class="arithmatex">\[
+P(y_i \mid x_i; w) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(y_i - w^\top x_i)^2}{2\sigma^2} \right)
+\]</div>
+<p>Assuming i.i.d. data:</p>
+<div class="arithmatex">\[
+\mathcal{L}(w) = \prod_{i=1}^{n} P(y_i \mid x_i; w) = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(y_i - w^\top x_i)^2}{2\sigma^2} \right)
+\]</div>
+<p>Take the log:</p>
+<div class="arithmatex">\[
+\begin{align*}
+\log \mathcal{L}(w) &amp;= \sum_{i=1}^{n} \log \left[ \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(y_i - w^\top x_i)^2}{2\sigma^2} \right) \right]\\
+                    &amp;= \sum_{i=1}^{n} \left[ -\frac{1}{2} \log(2\pi\sigma^2) - \frac{(y_i - w^\top x_i)^2}{2\sigma^2} \right]
+\end{align*}
+\]</div>
+<p>We now <strong>minimize</strong> the <strong>negative log-likelihood</strong>:</p>
+<div class="arithmatex">\[
+\begin{align*}
+w^*  &amp;= \arg\min_w - \log \mathcal{L}(w)\\
+     &amp;= \arg\min_w - \sum_{i=1}^{n} \left[ -\frac{1}{2} \log(2\pi\sigma^2) - \frac{(y_i - w^\top x_i)^2}{2\sigma^2} \right]\\
+     &amp;= \arg\min_w \frac{n}{2} \log(2\pi\sigma^2) + \frac{1}{2\sigma^2}\sum_{i=1}^{n}(y_i - w^\top x_i)^2\\
+     &amp;= \arg\min_w \sum_{i=1}^{n}(y_i - w^\top x_i)^2 \quad \text{ since they dont depend on } w ,\frac{n}{2} \log(2\pi\sigma^2),\frac{1}{2\sigma^2}
+\end{align*}
+\]</div>
+<p>Since <span class="arithmatex">\(n\log(2\pi\sigma^2)\)</span> and <span class="arithmatex">\(\frac{1}{2\sigma^2}\)</span> are constants (do not depend on <span class="arithmatex">\(w\)</span>), minimizing <span class="arithmatex">\(\mathcal{L}_{\text{NLL}}(w)\)</span> is <strong>equivalent</strong> to minimizing:</p>
+<div class="arithmatex">\[
+\sum_{i=1}^{n} (y_i - w^\top x_i)^2
+\]</div>
+<p>Thus, minimizing the <strong>Mean Squared Error (MSE)</strong>:</p>
+<div class="arithmatex">\[
+\text{MSE}(w) = \frac{1}{n} \sum_{i=1}^{n} (y_i - w^\top x_i)^2
+\]</div>
+<p>is <strong>equivalent</strong> to <strong>maximum likelihood estimation</strong> under the assumption of <strong>Gaussian noise</strong> in the regression model.</p>
+<h3 id="2-binary-cross-entropy">2. Binary cross Entropy</h3>
+<p>Given a dataset:</p>
+<div class="arithmatex">\[
+\mathcal{D} = \{(x_i, y_i)\}_{i=1}^n
+\]</div>
+<p>Assume that the target variable <span class="arithmatex">\(y_i\)</span> is generated from a Bernoulli distribution i.e</p>
+<div class="arithmatex">\[
+P(y_i|x_i;w) = \hat{y_i}^{y_i}(1-\hat{y_i})^{1-y_i} \quad \text{ where } y_i \in \{0,1\}, 0\leq \hat{y_i}\leq 1
+\]</div>
+<p>Since <span class="arithmatex">\(\hat{y_i}\)</span> are probalities we can use sigmoid function to generate them;</p>
+<div class="arithmatex">\[
+\hat{y_i} = \frac{1}{1+e^{w^\top x_i}}
+\]</div>
+<p>Assuming i.i.d. data:</p>
+<div class="arithmatex">\[
+\mathcal{L}(w) = \prod_{i=1}^{n} P(y_i \mid x_i; w) = \prod_{i=1}^{n} \hat{y_i}^{y_i}(1-\hat{y_i})^{1-y_i}
+\]</div>
+<p>Take the log:</p>
+<div class="arithmatex">\[
+\begin{align*}
+\log \mathcal{L}(w) &amp;= \sum_{i=1}^{n} \log \left[ \prod_{i=1}^{n} \hat{y_i}^{y_i}(1-\hat{y_i})^{1-y_i} \right]\\
+                    &amp;= \sum_{i=1}^{n} \log \left[ \hat{y_i}^{y_i}(1-\hat{y_i})^{1-y_i} \right]\\
+                    &amp;= \sum_{i=1}^{n} \left[ y_i\log \hat{y_i} +(1-y_i)\log (1-\hat{y_i}) \right]
+\end{align*}
+\]</div>
+<p>We now <strong>minimize</strong> the <strong>negative log-likelihood</strong>:</p>
+<div class="arithmatex">\[
+\begin{align*}
+w^*  &amp;= \arg\min_w - \log \mathcal{L}(w)\\
+     &amp;= \arg\min_w - \sum_{i=1}^{n} \left[ y_i\log \hat{y_i} +(1-y_i)\log (1-\hat{y_i}) \right]
+\end{align*}
+\]</div>
+<p>Thus the resulting loss function is called the Binary Cross-Entropy given as:</p>
+<div class="arithmatex">\[
+BCE(w) = - \sum_{i=1}^{n} \left[ y_i\log \hat{y_i} +(1-y_i)\log (1-\hat{y_i}) \right]
+\]</div>
+<p>So minimizing binary cross-entropy is equivalent to maximum likelihood estimation under the assumption that labels are drawn from a Bernoulli distribution with probability given by <span class="arithmatex">\(\hat{y} = \frac{1}{1+e^{w^\top x}}\)</span></p>
+<p><strong>NOTE:</strong></p>
+<p>In <strong>Maximum Likelihood Estimation (MLE)</strong>, to derive the <strong>negative log-likelihood</strong>, we assume that we know the <strong>distribution of the outputs</strong> <span class="arithmatex">\(y_i\)</span> given the inputs <span class="arithmatex">\(x_i\)</span> and model parameters <span class="arithmatex">\(w\)</span>; that is, we assume a probabilistic model of the form:</p>
+<div class="arithmatex">\[
+y_i \sim P(y_i \mid x_i; w)
+\]</div>
+<p>where <span class="arithmatex">\(w\)</span> represents the model parameters.</p>
+<p>Now, we introduce another concept known as <strong>Maximum A Posteriori (MAP) Estimation</strong>.</p>
+<h2 id="maximum-a-posteriori-map-estimation">Maximum A Posteriori (MAP) Estimation</h2>
+<p>Given a dataset:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathcal{D} &amp;= \left\{ (x_i, y_i) \right\}_{i=1}^{n} \\
+X &amp;= \left\{ x_i \right\}_{i=1}^{n} \\
+Y &amp;= \left\{ y_i \right\}_{i=1}^{n}
+\end{aligned}
+\]</div>
+<p>Let <span class="arithmatex">\(h_w \in \mathcal{H}\)</span>, i.e., a function <span class="arithmatex">\(h\)</span> parameterized by <span class="arithmatex">\(w\)</span>, in hypothesis space <span class="arithmatex">\(\mathcal{H}\)</span>.</p>
+<p>In Maximum A Posteriori (MAP) Estimation, we assume we have prior knowledge about the distribution of the parameters <span class="arithmatex">\(w\)</span>. Using Bayes&rsquo; Rule:</p>
+<div class="arithmatex">\[
+P(w \mid \mathcal{D}) = \frac{P(\mathcal{D} \mid w) \cdot P(w)}{P(\mathcal{D})}
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(P(w \mid \mathcal{D})\)</span>: <strong>Posterior</strong> — what MAP tries to maximize</li>
+<li><span class="arithmatex">\(P(\mathcal{D} \mid w)\)</span>: <strong>Likelihood</strong> — same as in MLE</li>
+<li><span class="arithmatex">\(P(w)\)</span>: <strong>Prior</strong> over parameters</li>
+<li><span class="arithmatex">\(P(\mathcal{D})\)</span>: <strong>Marginal likelihood</strong> (a constant with respect to <span class="arithmatex">\(w\)</span>)</li>
+</ul>
+<p>The MAP estimate maximizes the <strong>posterior</strong>:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+w_{\text{MAP}} &amp;= \arg\max_w P(w \mid \mathcal{D}) \\
+               &amp;= \arg\max_w \frac{P(\mathcal{D} \mid w) \cdot P(w)}{P(\mathcal{D})} \\
+               &amp;= \arg\max_w P(\mathcal{D} \mid w) \cdot P(w) \quad \text{(since \( P(\mathcal{D}) \) is constant)}
+\end{aligned}
+\]</div>
+<p>Because probabilities are small and prone to numerical instability, we apply the <strong>log function</strong> (monotonic, so it preserves maxima):</p>
+<div class="arithmatex">\[
+\begin{aligned}
+w_{\text{MAP}} &amp;= \arg\max_w \left[ \log P(\mathcal{D} \mid w) + \log P(w) \right] \\
+               &amp;= \arg\max_w \left[ \underbrace{\log P(\mathcal{D} \mid w)}_{\text{log-likelihood}} + \underbrace{\log P(w)}_{\text{log-prior}} \right]
+\end{aligned}
+\]</div>
+<p>In practice, we often minimize the negative log-posterior:</p>
+<div class="arithmatex">\[
+w_{\text{MAP}} = \arg\min_w \left[ -\log P(\mathcal{D} \mid w) - \log P(w) \right]
+\]</div>
+<ul>
+<li>The first term is the <strong>negative log-likelihood</strong> (same as MLE)</li>
+<li>The second term is the <strong>negative log-prior</strong> — acts as a regularization term</li>
+</ul>
+<p>MAP is like MLE plus regularization, where the regularization reflects our prior belief about the parameters.</p>
+<h3 id="example-1-map-with-a-gaussian-prior-l2-regularization">Example 1: MAP with a Gaussian Prior (L2 regularization)</h3>
+<p>Assume </p>
+<div class="arithmatex">\[
+w \sim \mathcal{N}(0,\sigma^2)
+\]</div>
+<p>Where <span class="arithmatex">\(d\)</span> is the number of features and <span class="arithmatex">\(n\)</span> is number of samples i.e <span class="arithmatex">\(X \in \mathbb{R}^{n\times d}\)</span> which implies that <span class="arithmatex">\(w \in \mathbb{R}^d\)</span>.</p>
+<p>Now our prior will be </p>
+<div class="arithmatex">\[
+\begin{align*}
+P(w) &amp;= \prod_{j=1}^{d} P(w_j)\\
+     &amp;= \prod_{j=1}^{d} \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{w_j^2}{2\sigma^2} \right)
+\end{align*}
+\]</div>
+<p>Now solving log-prior,</p>
+<div class="arithmatex">\[
+\begin{align*}
+\log P(w) &amp;= \log \prod_{j=1}^{d} \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{w_j^2}{2\sigma^2} \right)\\
+          &amp;= \sum_{j=1}^{d} \left[ \log \frac{1}{\sqrt{2\pi\sigma^2}}  -\frac{ w_j^2}{2\sigma^2} \right]\\
+          &amp;= d \log \frac{1}{\sqrt{2\pi\sigma^2}} - \frac{1}{2\sigma^2}\sum_{j=1}^{d} w_j^2\\
+          &amp;= d \log \frac{1}{\sqrt{2\pi\sigma^2}} - \frac{1}{2\sigma^2} \|w\|_2^2 
+\end{align*}
+\]</div>
+<p>Therefore we will have;</p>
+<div class="arithmatex">\[
+\begin{align*}
+w_{\text{MAP}} &amp;= \arg\min_w \left[ -\log P(\mathcal{D} \mid w) - \log P(w) \right]\\
+               &amp;= \arg\min_w \left[ -\log P(\mathcal{D} \mid w) -\left(d \log \frac{1}{\sqrt{2\pi\sigma^2}} - \frac{1}{2\sigma^2} \|w\|_2^2\right) \right]\\
+               &amp;=\arg\min_w \left[ -\log P(\mathcal{D} \mid w) -d \log \frac{1}{\sqrt{2\pi\sigma^2}} + \frac{1}{2\sigma^2} \|w\|_2^2 \right]\\
+               &amp;=\arg\min_w \left[ -\log P(\mathcal{D} \mid w) + \frac{1}{2\sigma^2} \|w\|_2^2 \right]\\
+               &amp;=\arg\min_w \left[ -\log P(\mathcal{D} \mid w) + \lambda \|w\|_2^2 \right] \quad \text{ where } \lambda = \frac{1}{2\sigma^2} 
+\end{align*}
+\]</div>
+<p>This shows that a Gaussian prior on <span class="arithmatex">\(w\)</span> leads to L2 regularization in the MAP objective which is the same as Ridge Regression.</p>
+<h3 id="example-2-map-with-a-laplace-prior-l1-regularization">Example 2: MAP with a Laplace Prior (L1 regularization)</h3>
+<p>Assume the prior on each weight <span class="arithmatex">\(w_j\)</span> is a Laplace distribution (double exponential distribution):</p>
+<div class="arithmatex">\[
+w_j \sim \text{Laplace}(0, b)
+\]</div>
+<p>Which implies</p>
+<div class="arithmatex">\[
+P(w_j) = \frac{1}{2b} \exp\left(-\frac{|w_j|}{b}\right)
+\]</div>
+<p>Since weights are assumed to be iid, then the prior is:</p>
+<div class="arithmatex">\[
+P(w) = \prod_{j=1}^{d} \frac{1}{2b} \exp\left(-\frac{|w_j|}{b}\right)
+\]</div>
+<p>Now computing the log-prior:</p>
+<div class="arithmatex">\[
+\begin{align*}
+\log P(w) &amp;= \log \prod_{j=1}^{d} \frac{1}{2b} \exp\left(-\frac{|w_j|}{b}\right) \\
+          &amp;= \sum_{j=1}^{d} \left[ \log \frac{1}{2b} - \frac{|w_j|}{b} \right] \\
+          &amp;= d \log \frac{1}{2b} - \frac{1}{b} \sum_{j=1}^{d} |w_j| \\
+          &amp;= d \log \frac{1}{2b} - \frac{1}{b} \|w\|_1
+\end{align*}
+\]</div>
+<p>Apply Bayes’ rule to get the MAP estimate:</p>
+<div class="arithmatex">\[
+\begin{align*}
+w_{\text{MAP}} &amp;= \arg\min_w \left[ -\log P(\mathcal{D} \mid w) - \log P(w) \right] \\
+               &amp;= \arg\min_w \left[ -\log P(\mathcal{D} \mid w) - d \log \frac{1}{2b} + \frac{1}{b} \|w\|_1 \right] \\
+               &amp;= \arg\min_w \left[ -\log P(\mathcal{D} \mid w) + \frac{1}{b} \|w\|_1 \right] \\
+               &amp;= \arg\min_w \left[ -\log P(\mathcal{D} \mid w) + \lambda \|w\|_1 \right] \quad \text{ where } \lambda = \frac{1}{b}
+\end{align*}
+\]</div>
+<p>This shows that a Laplace prior on <span class="arithmatex">\(w\)</span> leads to L1 regularization in the MAP objective which is the same as Lasso Regression.</p>
+<h2 id="gradient-descent-from-first-order-taylor-approximation">Gradient Descent from First-Order Taylor Approximation</h2>
+<p>The gradient of a function <span class="arithmatex">\(f\)</span> at a point <span class="arithmatex">\(w\)</span> yields the first-order Taylor approximation of <span class="arithmatex">\(f\)</span> around <span class="arithmatex">\(w\)</span>, given as:</p>
+<div class="arithmatex">\[
+f(u) \approx f(w) + \langle u - w, \nabla f(w) \rangle
+\]</div>
+<p>When <span class="arithmatex">\(f\)</span> is a convex function, this approximation is a lower bound of <span class="arithmatex">\(f\)</span>. That is:</p>
+<div class="arithmatex">\[
+f(u) \geq f(w) + \langle u - w, \nabla f(w) \rangle
+\]</div>
+<p>Therefore, for <span class="arithmatex">\(w\)</span> close to <span class="arithmatex">\(w^{(t)}\)</span>, we can approximate <span class="arithmatex">\(f(w)\)</span> as:</p>
+<div class="arithmatex">\[
+f(w) \approx f(w^{(t)}) + \langle w - w^{(t)}, \nabla f(w^{(t)}) \rangle
+\]</div>
+<p>We note that the above approximation might become loose if <span class="arithmatex">\(w\)</span> is far away from <span class="arithmatex">\(w^{(t)}\)</span>. Therefore, we minimize jointly the distance between <span class="arithmatex">\(w\)</span> and <span class="arithmatex">\(w^{(t)}\)</span> and the approximation of <span class="arithmatex">\(f\)</span> around <span class="arithmatex">\(w^{(t)}\)</span>. We also introduce a parameter <span class="arithmatex">\(\eta\)</span> which controls the trade-off between the two terms. This leads to the update rule as:</p>
+<div class="arithmatex">\[
+w^{(t+1)} = \arg\min_w \left\{ \frac{1}{2} \| w - w^{(t)} \|^2 + \eta \left[ f(w^{(t)}) + \langle w - w^{(t)}, \nabla f(w^{(t)}) \rangle \right] \right\}
+\]</div>
+<p>Solving the optimization problem by taking the derivative with respect to <span class="arithmatex">\(w\)</span> and setting it to zero yields the gradient descent update rule.</p>
+<p>Taking the objective function as <span class="arithmatex">\(J(w)\)</span>:</p>
+<div class="arithmatex">\[
+J(w) = \frac{1}{2} \| w - w^{(t)} \|^2 + \eta \left[ f(w^{(t)}) + \langle w - w^{(t)}, \nabla f(w^{(t)}) \rangle \right]
+\]</div>
+<p>Now solving for <span class="arithmatex">\(\nabla_w J(w)\)</span></p>
+<div class="arithmatex">\[
+\begin{align*}
+   \nabla_w J(w) &amp;= \nabla_w \left[ \frac{1}{2} \| w - w^{(t)} \|^2 + \eta \left[ f(w^{(t)}) + \langle w - w^{(t)}, \nabla f(w^{(t)}) \rangle \right] \right]\\
+    &amp;= \nabla_w \left[ \frac{1}{2} (w - w^{(t)})^\top(w - w^{(t)}) + \eta f(w^{(t)}) + \eta (w - w^{(t)}) ^\top \nabla f(w^{(t)}) \right]\\
+    &amp;= \nabla_w \left[ \frac{1}{2} (w^\top w-w^\top w^{(t)} -(w^{(t)})^\top w +(w^{(t)})^\top (w^{(t)})  )  + \eta f(w^{(t)}) + \eta( w^\top \nabla f(w^{(t)}) - (w^{(t)})^\top \nabla f(w^{(t)}) )  \right]\\
+    &amp;=  \frac{1}{2} (2w -  2w^{(t)}) + \eta \nabla f(w^{(t)})\\
+    &amp;=  (w -  w^{(t)}) + \eta \nabla f(w^{(t)})
+\end{align*}
+\]</div>
+<p>Next we set the gradient to zero i.e <span class="arithmatex">\(\nabla_w J(w) = 0\)</span></p>
+<div class="arithmatex">\[
+\begin{align*}
+   &amp; (w -  w^{(t)}) + \eta \nabla f(w^{(t)}) = 0\\
+   &amp;w =  w^{(t)} -  \eta \nabla f(w^{(t)})
+\end{align*}
+\]</div>
+<p>Therefor the gradient descent update rule is given as;</p>
+<div class="arithmatex">\[
+\boxed{w^{(t+1)} = w^{(t)} - \eta \nabla f(w^{(t)})}
+\]</div>
+<h2 id="gradient-descent-gd-convergence">Gradient Descent (GD) Convergence</h2>
+<p>We want to show that GD converges, i.e.,</p>
+<div class="arithmatex">\[
+f(\bar{w}) - f(w^*) \leq \varepsilon
+\]</div>
+<p>after a sufficient number of steps <span class="arithmatex">\(T\)</span>, where:</p>
+<ul>
+<li><span class="arithmatex">\(f\)</span> is convex and <span class="arithmatex">\(\rho\)</span>-Lipschitz</li>
+<li><span class="arithmatex">\(\bar{w} = \frac{1}{T} \sum_{t=1}^T w^{(t)}\)</span></li>
+<li><span class="arithmatex">\(w^*\)</span> is the optimal point and <span class="arithmatex">\(B\)</span> be an upper bound on <span class="arithmatex">\(\|w^*\|\)</span> i.e <span class="arithmatex">\(\|w^*\| \leq B\)</span></li>
+<li><span class="arithmatex">\(w^{(t+1)} = w^{(t)} - \eta \nabla f(w^{(t)})\)</span></li>
+</ul>
+<p><strong>Proof:</strong></p>
+<p>From the definition of <span class="arithmatex">\(\bar{w}\)</span> and using Jensen’s inequality we have;</p>
+<div class="arithmatex">\[
+f(\bar{w}) - f(w^*) \leq \frac{1}{T} \sum_{t=1}^T \left[ f(w^{(t)}) - f(w^*) \right]
+\]</div>
+<p>Due to convexity of <span class="arithmatex">\(f\)</span> we have:</p>
+<div class="arithmatex">\[
+f(w^{(t)}) - f(w^*) \leq \langle w^{(t)} - w^*, \nabla f(w^{(t)}) \rangle
+\]</div>
+<p>So combining the above two inqualies we obtain:</p>
+<div class="arithmatex">\[
+f(\bar{w}) - f(w^*) \leq \frac{1}{T} \sum_{t=1}^T \langle w^{(t)} - w^*, \nabla f(w^{(t)}) \rangle
+\]</div>
+<p>To bound the right-hand side of the above inequality we use this lemma: Given the update rule <span class="arithmatex">\(w^{(t+1)} = w^{(t)} - \eta \nabla f(w^{(t)})\)</span>, then it satisfies;</p>
+<div class="arithmatex">\[
+\sum_{t=1}^T \langle w^{(t)} - w^*, \nabla f(w^{(t)}) \rangle \leq \frac{B^2}{2\eta} + \frac{\eta}{2} \sum_{t=1}^T \| \nabla f(w^{(t)}) \|^2
+\]</div>
+<p>If <span class="arithmatex">\(f\)</span> is <span class="arithmatex">\(\rho\)</span>-Lipschitz, then <span class="arithmatex">\(\| \nabla f(w^{(t)}) \| \leq \rho\)</span>. Therefore:</p>
+<div class="arithmatex">\[
+\sum_{t=1}^T \langle w^{(t)} - w^*, \nabla f(w^{(t)}) \rangle \leq \frac{B^2}{2\eta} + \frac{\eta T \rho^2}{2}
+\]</div>
+<p>Now Choosing an optimal learning rate let say,</p>
+<div class="arithmatex">\[
+\eta = \frac{B}{\rho \sqrt{T}}
+\]</div>
+<p>Then:</p>
+<div class="arithmatex">\[
+\sum_{t=1}^T \langle w^{(t)} - w^*, \nabla f(w^{(t)}) \rangle \leq B \rho \sqrt{T}
+\]</div>
+<p>Dividing by <span class="arithmatex">\(T\)</span>:</p>
+<div class="arithmatex">\[
+f(\bar{w}) - f(w^*) \leq \frac{B \rho}{\sqrt{T}}
+\]</div>
+<p>If we run the GD algorithm on <span class="arithmatex">\(f\)</span> for <span class="arithmatex">\(T\)</span> steps with  <span class="arithmatex">\(\eta = \frac{B}{\rho \sqrt{T}}\)</span>, then we will have,</p>
+<div class="arithmatex">\[
+    f(\bar{w}) - f(w^*) \leq \frac{B \rho}{\sqrt{T}}
+\]</div>
+<p>To guarantee that the left-hand side is at most <span class="arithmatex">\(\varepsilon\)</span>, we solve:</p>
+<div class="arithmatex">\[
+\frac{B \rho}{\sqrt{T}} \leq \varepsilon \quad \Rightarrow \quad \sqrt{T} \geq \frac{B \rho}{\varepsilon} \quad \Rightarrow \quad T \geq \frac{B^2 \rho^2}{\varepsilon^2}
+\]</div>
+<p>Thus, Gradient Descent converges to within error <span class="arithmatex">\(\varepsilon\)</span> after:</p>
+<div class="arithmatex">\[
+\boxed{T \geq \frac{B^2 \rho^2}{\varepsilon^2}}
+\]</div>
+<p>iterations, when minimizing a convex and <span class="arithmatex">\(\rho\)</span>-Lipschitz function <span class="arithmatex">\(f\)</span>, under the assumption that the optimal solution satisfies <span class="arithmatex">\(\|w^*\| \leq B\)</span>.</p>
+<h2 id="stochastic-gradient-descent-sgd">Stochastic Gradient Descent (SGD)</h2>
+<p>Stochastic Gradient Descent is an iterative optimization algorithm used to minimize a differentiable objective function. Unlike standard (batch) gradient descent, which computes the gradient using the entire dataset, SGD approximates the gradient using a single randomly chosen data point at each iteration.</p>
+<p>From above, we have seen that standard gradient descent has the following update rule:</p>
+<div class="arithmatex">\[
+w^{(t+1)} = w^{(t)} - \eta \nabla f(w^{(t)}) = w^{(t)} - \eta \left( \frac{1}{n} \sum_{i=1}^{n} \nabla f_i(w^{(t)}) \right)
+\]</div>
+<p>Here, $ f(w) = \frac{1}{n} \sum_{i=1}^n f_i(w) $, where each $ f_i(w) $ typically represents the loss on the $ i $-th training example.</p>
+<p>In Stochastic Gradient Descent, the full gradient $ \nabla f(w^{(t)}) $ is approximated by the gradient on a single example:</p>
+<div class="arithmatex">\[
+w^{(t+1)} = w^{(t)} - \eta \nabla f_i(w^{(t)})
+\]</div>
+<p>where $ i $ is chosen uniformly at random from $ {1, \dots, n} $ at each iteration.</p>
+<p>This stochastic estimate is unbiased but introduces variance, which affects convergence stability:</p>
+<div class="arithmatex">\[
+\mathbb{E}_i [\nabla f_i(w)] = \nabla f(w)
+\]</div>
+<p><strong>Proof:</strong></p>
+<p>Given that <span class="arithmatex">\(i\)</span> is selected uniformly at random from <span class="arithmatex">\(\{1, 2, \dots, n\}\)</span>, the probability of selecting any particular index <span class="arithmatex">\(i\)</span> is <span class="arithmatex">\(\frac{1}{n}\)</span>. Therefore, the expectation of the stochastic gradient is:</p>
+<div class="arithmatex">\[
+\mathbb{E}_i[\nabla f_i(w)] = \sum_{i=1}^{n} \frac{1}{n} \nabla f_i(w) = \frac{1}{n} \sum_{i=1}^{n} \nabla f_i(w) = \nabla f(w)
+\]</div>
+<p>This confirms that the stochastic gradient estimator is unbiased.</p>
+<h2 id="mini-batch-stochastic-gradient-descent">Mini-Batch Stochastic Gradient Descent</h2>
+<p>Mini-Batch SGD is an improvement between standard gradient descent and stochastic gradient descent (SGD). Instead of computing the gradient using the entire dataset or a single sample, it computes the gradient over a random subset (mini-batch) of data points at each iteration.</p>
+<p>Given <span class="arithmatex">\(B_t \subset \{1, 2, \dots, n\}\)</span> be a randomly selected mini-batch of <span class="arithmatex">\(m\)</span> examples at iteration <span class="arithmatex">\(t\)</span>. Then the update rule is given as:</p>
+<div class="arithmatex">\[
+w^{(t+1)} = w^{(t)} - \eta \cdot \frac{1}{m} \sum_{i \in B_t} \nabla f_i(w^{(t)})
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(m\)</span>: mini-batch size</li>
+<li><span class="arithmatex">\(B_t\)</span>: the mini-batch sampled uniformly without replacement</li>
+</ul>
+<p>We can also show that the Mini-Batch SGD  gradient estimate is unbiased i.e</p>
+<div class="arithmatex">\[
+\mathbb{E}_{B_t} \left[ g(w) \right] = \nabla f(w) \quad \text{ where } g(w) =  \frac{1}{m} \sum_{i \in B_t} \nabla f_i(w^{(t)})
+\]</div>
+<p><strong>Proof:</strong></p>
+<p>We’re taking the expected value of the mini-batch gradient over all possible random mini-batches <span class="arithmatex">\(B_t\)</span> of size <span class="arithmatex">\(m\)</span>. Since the indices are sampled uniformly, each data point <span class="arithmatex">\(i\)</span> has the same probability <span class="arithmatex">\(\frac{m}{n}\)</span> of being included in the mini-batch.</p>
+<p>Using linearity of expectation:</p>
+<div class="arithmatex">\[
+\mathbb{E}_{B_t}\left[ \frac{1}{m} \sum_{i \in B_t} \nabla f_i(w) \right] = \frac{1}{m} \sum_{i=1}^{n} \mathbb{P}(i \in B_t) \cdot \nabla f_i(w)
+\]</div>
+<p>Since:</p>
+<div class="arithmatex">\[
+\mathbb{P}(i \in B_t) = \frac{m}{n}
+\]</div>
+<p>We substitute:</p>
+<div class="arithmatex">\[
+\frac{1}{m} \sum_{i=1}^{n} \frac{m}{n} \nabla f_i(w) = \frac{1}{n} \sum_{i=1}^{n} \nabla f_i(w) = \nabla f(w)
+\]</div>
+<p>Therefore:</p>
+<div class="arithmatex">\[
+\mathbb{E}_{B_t}[g(w)] = \nabla f(w)
+\]</div>
+<p>We can also note that Mini-Batch SGD  has a lower variance than the SGD due to averaging over multiple samples.</p>
+<h2 id="stochastic-gradient-descent-sgd-with-momentum">Stochastic Gradient Descent (SGD) with Momentum</h2>
+<p>SGD with momentum is used to accelerate convergence and to smoothen updates, especially in directions of consistent gradients, by adding a &ldquo;memory&rdquo; of past gradients.</p>
+<p>In SGD with Momentum we have the following update Rule:</p>
+<p>We introduce a velocity vector <span class="arithmatex">\(v^{(t)}\)</span>, which accumulates an exponentially decaying moving average of past gradients.</p>
+<div class="arithmatex">\[
+\begin{aligned}
+v^{(t+1)} &amp;= \beta v^{(t)} + \nabla f_i(w^{(t)}) \\
+w^{(t+1)} &amp;= w^{(t)} - \eta v^{(t+1)}
+\end{aligned}
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(\beta \in [0,1)\)</span> is the momentum coefficient,</li>
+<li><span class="arithmatex">\(v^{(0)} = 0\)</span>,</li>
+<li><span class="arithmatex">\(\nabla f_i(w^{(t)})\)</span> is a stochastic gradient sampled at iteration <span class="arithmatex">\(t\)</span>.</li>
+</ul>
+<p>We can see that the velocity term is a weighted sum of previous gradients given as:</p>
+<div class="arithmatex">\[
+v^{(t)} = \sum_{k=0}^{t-1} \beta^k \nabla f_{i_{t-k}}(w^{(t-k)})
+\]</div>
+<p>This shows that recent gradients have more weight (since <span class="arithmatex">\(\beta^k\)</span> decays with <span class="arithmatex">\(k\)</span>).</p>
+<h2 id="neural-network">Neural Network</h2>
+<p>A neural network is a machine learning model inspired by the human brain that maps input data to output predictions by learning weights through layers of interconnected nodes (neurons). Neural networks are capable of modeling complex non-linear decision boundaries by composing multiple linear transformations and non-linear activation functions.</p>
+<p>A feedforward neural network is made up of:</p>
+<ul>
+<li>An input layer that takes the features.</li>
+<li>One or more hidden layers that learn intermediate representations.</li>
+<li>An output layer that produces predictions.</li>
+</ul>
+<p>Each layer applies a linear transformation followed by a non-linear activation function.</p>
+<h2 id="data-representation">Data Representation</h2>
+<p>Let:</p>
+<ul>
+<li><span class="arithmatex">\(n\)</span>: number of training examples</li>
+<li><span class="arithmatex">\(d\)</span>: number of features</li>
+<li><span class="arithmatex">\(X \in \mathbb{R}^{d \times n}\)</span>: input matrix</li>
+<li><span class="arithmatex">\(y \in \mathbb{R}^{1 \times n}\)</span>: target vector for regression or <span class="arithmatex">\(y \in {0, 1}^{1\times n}\)</span> for binary classification</li>
+</ul>
+<p>For a 2-layer neural network (i.e., one hidden layer), we define:</p>
+<ul>
+<li><span class="arithmatex">\(W^{[1]} \in \mathbb{R}^{h \times d}\)</span>: weights for hidden layer</li>
+<li><span class="arithmatex">\(b^{[1]} \in \mathbb{R}^{h \times 1}\)</span>: bias for hidden layer</li>
+<li><span class="arithmatex">\(W^{[2]} \in \mathbb{R}^{1 \times h}\)</span>: weights for output layer</li>
+<li><span class="arithmatex">\(b^{[2]} \in \mathbb{R}\)</span>: bias for output layer</li>
+</ul>
+<h2 id="neural-network-architecture">Neural Network Architecture</h2>
+<p>Here we are going to use an example of a 2-layer feedforward neural network with:</p>
+<ul>
+<li>Input layer (<span class="arithmatex">\(d\)</span> neurons)</li>
+<li>Hidden layer (<span class="arithmatex">\(h_1\)</span> neurons)</li>
+<li>Output layer (<span class="arithmatex">\(h_2\)</span> neurons)</li>
+</ul>
+<p>Assuming our task is binary clasification and we use <span class="arithmatex">\(\sigma\)</span> (sigmoid) activation function on both layers.</p>
+<p>Now let&rsquo;s see how our data and parameters are represented.</p>
+<ul>
+<li>
+<p><strong>Data</strong>: </p>
+<p><strong>Features</strong>: <span class="arithmatex">\(X \in \mathbb{R}^{d\times n}\)</span> which is the transpose of our original input data.</p>
+<p><strong>Targets</strong>: <span class="arithmatex">\(Y \in \mathbb{R}^{h_2\times n}\)</span> which is the transpose of our original target data.</p>
+</li>
+<li>
+<p><strong>Layer 1</strong>:</p>
+<p><strong>Weight</strong>: <span class="arithmatex">\(W_1 \in \mathbb{R}^{h_1\times d}\)</span></p>
+<p><strong>Bias</strong>: <span class="arithmatex">\(b_1 \in \mathbb{R}^{h_1\times 1}\)</span></p>
+</li>
+<li>
+<p><strong>Layer 2</strong>:</p>
+<p><strong>Weight</strong>: <span class="arithmatex">\(W_2 \in \mathbb{R}^{h_2\times h_1}\)</span></p>
+<p><strong>Bias</strong>: <span class="arithmatex">\(b_2 \in \mathbb{R}^{h_2\times 1}\)</span></p>
+</li>
+<li>
+<p><strong>Loss Function</strong>: Since this is a binary classification problem, we use binary cross entrpy.
+$$
+\mathcal{L} = - \frac{1}{n} \sum_{i=1}^{n} \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right]
+$$</p>
+</li>
+</ul>
+<h3 id="forward-propagation">Forward Propagation</h3>
+<p>The Feedforward Propagation, also called Forward Pass, is the process consisting of computing all network nodes’ output values, starting with the first hidden layer until the last output layer, using at start either a subset or the entire dataset samples.</p>
+<p><strong>Layer 1</strong></p>
+<ul>
+<li>linear transformation 
+$$
+Z_1 = W_1X+b_1 \quad \text{where } Z_1 \in \mathbb{R}^{h_1\times n}
+$$</li>
+<li>non-linear transformation with <span class="arithmatex">\(\sigma\)</span> activation function
+$$
+A_1 = \sigma (Z_1) \quad \text{where } A_1 \in \mathbb{R}^{h_1\times n}
+$$</li>
+<li>Number of parameters in layer 1 is given as: <span class="arithmatex">\((h_1 \times d) + h_1 = h_1(d + 1)\)</span>.</li>
+</ul>
+<p><strong>Layer 2</strong></p>
+<ul>
+<li>linear transformation </li>
+</ul>
+<div class="arithmatex">\[
+Z_2 = W_2A_1+b_2 \quad \text{where } Z_2 \in \mathbb{R}^{h_2\times n}
+\]</div>
+<ul>
+<li>non-linear transformation with <span class="arithmatex">\(\sigma\)</span> activation function</li>
+</ul>
+<div class="arithmatex">\[
+A_2 = \sigma (Z_2) \quad \text{where } A_2 \in \mathbb{R}^{h_2\times n}
+\]</div>
+<ul>
+<li>Number of parameters in layer 2 is given as: <span class="arithmatex">\((h_2 \times h_1) + h_2 = h_2(h_1+1)\)</span>.</li>
+</ul>
+<p><strong>Output Layer</strong></p>
+<ul>
+<li>Output</li>
+</ul>
+<p>$$
+   A_2 = \hat{Y} \in \mathbb{R}^{h_2\times n}
+   $$</p>
+<h2 id="loss-function">Loss Function</h2>
+<p>For binary classification, we use binary cross-entropy loss:</p>
+<div class="arithmatex">\[
+\mathcal{L} = - \frac{1}{n} \sum_{i=1}^{n} \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right]
+\]</div>
+<p>Matrix form:</p>
+<div class="arithmatex">\[
+\mathcal{L} = - \frac{1}{n} \left[ \mathcal{Y} \log(A_2) + (1 - \mathcal{Y}) \log(1 - A_2) \right]
+\]</div>
+<h3 id="backward-propagation">Backward Propagation</h3>
+<p>Backpropagation, or backward propagation of errors, is an algorithm working from the output nodes to the input nodes of a neural network using the chain rule to compute how much each activation unit contributed to the overall error.</p>
+<p>Backpropagation automatically computes error gradients to then repeatedly adjust all weights and biases to reduce the overall error.</p>
+<p>From our example our aim is to find </p>
+<div class="arithmatex">\[
+\displaystyle \frac{\partial L}{\partial A_2}, \quad \displaystyle \frac{\partial L}{\partial Z_2}, \quad \displaystyle \frac{\partial L}{\partial W_2}, \quad \displaystyle \frac{\partial L}{\partial b_2}, \quad \displaystyle \frac{\partial L}{\partial A_1}, \quad \displaystyle \frac{\partial L}{\partial Z_1}, \quad \displaystyle \frac{\partial L}{\partial W_1} \quad \text{ and } \displaystyle \frac{\partial L}{\partial b_1}
+\]</div>
+<p>Note that we are using our loss and binary cross entropy. But since we want to find its partial derivative w.r.t <span class="arithmatex">\(A_2\)</span> we will modify it to be</p>
+<div class="arithmatex">\[
+L =  - \frac{1}{n} \left[ Y \log(A_2) + (1 - Y) \log(1 - A_2) \right]
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\displaystyle \frac{\partial L}{\partial A_2}\)</span></li>
+</ul>
+<div class="arithmatex">\[
+\displaystyle \frac{\partial L}{\partial A_2} =  \frac{1}{n} \left[\frac{A_2-Y}{A_2(1-A_2)}\right] \in \mathbb{R}^{h_2 \times n}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\displaystyle \frac{\partial L}{\partial Z_2} = \displaystyle \frac{\partial L}{\partial A_2} \times \displaystyle \frac{\partial A_2}{\partial Z_2}\)</span></li>
+</ul>
+<div class="arithmatex">\[
+ \displaystyle \frac{\partial A_2}{\partial Z_2} = \sigma(Z_2)(1-\sigma(Z_2))= A_2(1-A_2) \in \mathbb{R}^{h_2 \times n} \quad \text{ since }\sigma(Z_2) = A_2\\
+\]</div>
+<p>Therefore we have,</p>
+<div class="arithmatex">\[
+\begin{align*}
+\displaystyle \frac{\partial L}{\partial Z_2} &amp;= \displaystyle \frac{\partial L}{\partial A_2} \times \displaystyle \frac{\partial A_2}{\partial Z_2}\\
+                                              &amp;=  \frac{1}{n} \left[\frac{A_2-Y}{A_2(1-A_2)}\right] \times A_2(1-A_2)\\
+                                              &amp;= \frac{1}{n} \left[A_2-Y\right] \in \mathbb{R}^{h_2\times n}
+\end{align*}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\displaystyle \frac{\partial L}{\partial W_2} = \displaystyle \frac{\partial L}{\partial Z_2} \times \displaystyle \frac{\partial Z_2}{\partial W_2}\)</span></li>
+</ul>
+<div class="arithmatex">\[
+ \frac{\partial Z_2}{\partial W_2} = A_1^\top \in \mathbb{R}^{h_2\times h_1}
+\]</div>
+<p>Therefore we have,</p>
+<div class="arithmatex">\[
+\displaystyle \frac{\partial L}{\partial W_2}  = \frac{1}{n} \left[A_2-Y\right]A_1^\top \in \mathbb{R}^{h_2 \times h_1}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\displaystyle \frac{\partial L}{\partial b_2} = \displaystyle \frac{\partial L}{\partial Z_2} \times \displaystyle \frac{\partial Z_2}{\partial b_2}\)</span></li>
+</ul>
+<div class="arithmatex">\[
+ \frac{\partial Z_2}{\partial b_2} = I \quad \text{Identity}
+\]</div>
+<p>Therefore we have,</p>
+<div class="arithmatex">\[
+\displaystyle \frac{\partial L}{\partial b_2}  = \frac{1}{n} \left[A_2-Y\right] \in \mathbb{R}^{h_2 \times n} \quad \text{ but } \displaystyle \frac{\partial L}{\partial b_2} \in \mathbb{R}^{h_2 \times 1} \quad \text{So, we will sum over the second dimension.}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\displaystyle \frac{\partial L}{\partial A_1} = \displaystyle \frac{\partial L}{\partial Z_2} \times \displaystyle \frac{\partial Z_2}{\partial A_1}\)</span></li>
+</ul>
+<div class="arithmatex">\[
+ \displaystyle \frac{\partial Z_2}{\partial A_1} =  W_2^\top  \in \mathbb{R}^{h_1\times h_2}
+\]</div>
+<p>Therefore we have,</p>
+<div class="arithmatex">\[
+\displaystyle \frac{\partial L}{\partial A_1} =  \frac{1}{n} \left[A_2-Y\right] W_2^\top \in \mathbb{R}^{h_1\times n}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\displaystyle \frac{\partial L}{\partial Z_1} = \displaystyle \frac{\partial L}{\partial A_1} \times \displaystyle \frac{\partial A_1}{\partial Z_1}\)</span></li>
+</ul>
+<div class="arithmatex">\[
+ \displaystyle \frac{\partial A_1}{\partial Z_1} = \underbrace{\sigma(Z_1)(1-\sigma(Z_1))}_{\text{element-wise multip.}} \in \mathbb{R}^{h_1\times n}
+\]</div>
+<p>Therefore we have,</p>
+<div class="arithmatex">\[
+\begin{align*}
+\displaystyle \frac{\partial L}{\partial Z_1} &amp;=  \frac{1}{n} \left[A_2-Y\right] W_2^\top (\sigma(Z_1)(1-\sigma(Z_1))) \quad \text{ Due to dimentionality we change to}\\
+                                              &amp;=   \frac{1}{n} \underbrace{\underbrace{W_2^\top \left[A_2-Y\right]}_{\text{matrix multip.}} (\sigma(Z_1)(1-\sigma(Z_1)))}_{\text{element-wise multip.}} \in \mathbb{R}^{h_1\times n}
+\end{align*}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\displaystyle \frac{\partial L}{\partial W_1} = \displaystyle \frac{\partial L}{\partial Z_1} \times \displaystyle \frac{\partial Z_1}{\partial W_1}\)</span></li>
+</ul>
+<div class="arithmatex">\[
+\displaystyle \frac{\partial Z_1}{\partial W_1} =  X^\top \in \mathbb{R}^{n\times d}
+\]</div>
+<p>Therefore we have,</p>
+<div class="arithmatex">\[
+\displaystyle \frac{\partial L}{\partial W_1} = \frac{1}{n} W_2^\top \left[A_2-Y\right] (\sigma(Z_1)(1-\sigma(Z_1))) X^\top \in \mathbb{R}^{h_1\times d}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\displaystyle \frac{\partial L}{\partial b_1} = \displaystyle \frac{\partial L}{\partial Z_1} \times \displaystyle \frac{\partial Z_1}{\partial b_1}\)</span></li>
+</ul>
+<div class="arithmatex">\[
+\displaystyle \frac{\partial Z_1}{\partial b_1} =  I \quad \text{Identity}
+\]</div>
+<p>Therefore we have,</p>
+<div class="arithmatex">\[
+\displaystyle \frac{\partial L}{\partial b_1} = \frac{1}{n} W_2^\top \left[A_2-Y\right] (\sigma(Z_1)(1-\sigma(Z_1))) \in \mathbb{R}^{h_1\times n} \quad \text{So, we will sum over the second dimension to get } \mathbb{R}^{h_1\times 1}
+\]</div>
+<h2 id="gradient-descent-and-optimization">Gradient Descent and Optimization</h2>
+<p>Using gradient descent, we update parameters in the direction that reduces the loss.</p>
+<p>Let <span class="arithmatex">\(\eta\)</span> be the learning rate. The update rules:</p>
+<ul>
+<li><span class="arithmatex">\(W_1 \leftarrow W_1 - \eta \cdot \frac{\partial L}{\partial W_1}\)</span></li>
+<li><span class="arithmatex">\(b_1 \leftarrow b_1 - \eta \cdot \frac{\partial L}{\partial b_1}\)</span></li>
+<li><span class="arithmatex">\(W_2 \leftarrow W_2 - \eta \cdot \frac{\partial L}{\partial W_2}\)</span></li>
+<li><span class="arithmatex">\(b_2 \leftarrow b_2 - \eta \cdot \frac{\partial L}{\partial b_2}\)</span></li>
+</ul>
+<p>Repeat this process for multiple epochs until the loss converges.</p>
+<h2 id="vanishing-and-exploding-gradient-problems-in-deep-neural-networks"><strong>Vanishing and Exploding Gradient Problems in Deep Neural Networks</strong></h2>
+<p>In a deep neural network, at layer <span class="arithmatex">\(\mathcal{l}\)</span>, we define the pre-activation and activation as follows:</p>
+<div class="arithmatex">\[
+h^{\mathcal{l}} = \phi(Z^{\mathcal{l}}), \quad \text{where} \quad Z^{\mathcal{l}} = W^{\mathcal{l}} h^{\mathcal{l}-1}
+\]</div>
+<p>Here, <span class="arithmatex">\(\phi\)</span> is the activation function.</p>
+<h3 id="gradient-behavior-in-backpropagation"><strong>Gradient Behavior in Backpropagation</strong></h3>
+<p>During backpropagation, the gradient of the loss <span class="arithmatex">\(L\)</span> with respect to <span class="arithmatex">\(Z^{\mathcal{l}}\)</span> can be approximated as:</p>
+<div class="arithmatex">\[
+\left\| \frac{\partial L}{\partial Z^{\mathcal{l}}} \right\| \approx \prod_{k = 1}^{\mathcal{l}} \|W^{\mathcal{k}}\| \cdot \|\phi'(Z^{\mathcal{k}-1})\|
+\]</div>
+<p>This product can either <strong>explode</strong> or <strong>vanish</strong>, depending on the magnitudes of the weights and activation derivatives.</p>
+<h3 id="case-1-exploding-gradients"><strong>Case 1: Exploding Gradients</strong></h3>
+<p>Occurs when:</p>
+<div class="arithmatex">\[
+\|W^{\mathcal{k}}\| &gt; 1
+\]</div>
+<p>Let</p>
+<div class="arithmatex">\[
+C = \max_k \|W^{\mathcal{k}}\|
+\Rightarrow \prod_{k} \|W^{\mathcal{k}}\|  \propto C^{\mathcal{l}}
+\]</div>
+<p>This exponential growth leads to <strong>exploding gradients</strong>, destabilizing training.</p>
+<h4 id="solutions"><strong>Solutions:</strong></h4>
+<ol>
+<li><strong>Reduce depth</strong> using residual/skip connections.</li>
+<li><strong>Regularization</strong> (e.g., <span class="arithmatex">\(L_1\)</span>, <span class="arithmatex">\(L_2\)</span>, or spectral norm regularization).</li>
+<li><strong>Gradient clipping</strong> to limit gradient magnitude.</li>
+<li><strong>Normalization techniques</strong>, such as BatchNorm or LayerNorm.</li>
+</ol>
+<h3 id="case-2-vanishing-gradients"><strong>Case 2: Vanishing Gradients</strong></h3>
+<p>Occurs when:</p>
+<div class="arithmatex">\[
+\|W^{\mathcal{k}}\| &lt; 1 \quad \text{or} \quad \|\phi'(Z^{\mathcal{k}-1})\| &lt; 1
+\]</div>
+<p>This leads to gradients approaching zero, making it difficult for earlier layers to learn.</p>
+<h4 id="solutions_1"><strong>Solutions:</strong></h4>
+<ol>
+<li><strong>Reduce depth</strong> via residual connections.</li>
+<li>
+<p><strong>Use non-saturating activation functions</strong>:</p>
+</li>
+<li>
+<p>Prefer <strong>ReLU</strong>, <strong>Leaky ReLU</strong>, <strong>ELU</strong>, or <strong>Swish</strong> over <strong>sigmoid</strong> or <strong>tanh</strong>.</p>
+</li>
+<li><strong>Proper weight initialization</strong> (e.g., He or Xavier initialization).</li>
+</ol>
+<h3 id="problem-of-dying-neurons"><strong>Problem of Dying Neurons</strong></h3>
+<p>With ReLU, neurons can &ldquo;die&rdquo; (i.e., output zero for all inputs), especially when gradients become zero.</p>
+<h4 id="solutions_2"><strong>Solutions:</strong></h4>
+<ul>
+<li>Use <strong>Leaky ReLU</strong>, <strong>PReLU</strong>, or <strong>ELU</strong> to maintain non-zero gradients.</li>
+</ul>
+<h3 id="depth-and-skip-connections"><strong>Depth and Skip Connections</strong></h3>
+<p>Depth refers to the number of layers or the length of the computational path from input to output. <a href="https://arxiv.org/pdf/1512.03385v1"><strong>Skip connections</strong></a> help by providing alternate shorter paths for gradient flow, effectively reducing the network&rsquo;s depth from a gradient propagation perspective.</p>
+<h3 id="summary-table"><strong>Summary Table</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Solutions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Vanishing Gradient</strong></td>
+<td>- Use residual connections (reduce effective depth)  <br> - Use non-saturating activations <br> - Use proper initialization</td>
+</tr>
+<tr>
+<td><strong>Exploding Gradient</strong></td>
+<td>- Use residual connections <br> - Regularization (e.g., spectral norm) <br> - Gradient clipping <br> - Normalization techniques</td>
+</tr>
+<tr>
+<td><strong>Dying Neurons</strong></td>
+<td>- Use Leaky ReLU, ELU, or PReLU</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+        
+          
+          <a href="linear_regression/" class="md-footer__link md-footer__link--next" aria-label="Next: Linear Regression">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Linear Regression
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": ".", "features": ["content.code.copy", "content.math", "navigation.footer", "navigation.tabs", "toc.integrate", "header.autohide"], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

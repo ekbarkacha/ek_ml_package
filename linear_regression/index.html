@@ -1,0 +1,1231 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../logistic_regression/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Linear Regression - Machine Learning</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linear-regression-and-gradient-descent" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Machine Learning" class="md-header__button md-logo" aria-label="Machine Learning" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Machine Learning
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Linear Regression
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Introduction
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Supervised Learning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../kmeans/" class="md-tabs__link">
+          
+  
+  
+  Unsupervised Learning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../activation_function/" class="md-tabs__link">
+          
+  
+  
+  Supporting Concepts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../notebooks/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Notebook Gallery
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About Author
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Machine Learning" class="md-nav__button md-logo" aria-label="Machine Learning" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Machine Learning
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Supervised Learning
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Supervised Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear Regression
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logistic_regression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Logistic Regression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gaussian_discriminant_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gaussian Discriminant Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../knn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    K-Nearest Neighbors (KNN)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perceptron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Perceptron Algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../neural_network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Neural Networks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unsupervised Learning
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Unsupervised Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kmeans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    K-Means Clustering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Principal Component Analysis (PCA)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Supporting Concepts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Supporting Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../activation_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Activation Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loss_function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Loss Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Notebook Gallery
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About Author
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="linear-regression-and-gradient-descent">Linear Regression And Gradient Descent</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#data-representation">Data Representation</a></li>
+<li><a href="#model-hypothesis">Model Hypothesis</a></li>
+<li><a href="#loss-function">Loss Function (L2 Norm)</a></li>
+<li><a href="#gradient">Gradient Of Loss Function</a></li>
+<li><a href="#gradient-descent-algorithms">Gradient Descent Algorithms</a><ul>
+<li>Batch Gradient Descent</li>
+<li>Stochastic Gradient Descent</li>
+<li>Stochastic Gradient Descent with Momentum</li>
+<li>Mini-batch Gradient Descent</li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
+<h2 id="introduction">Introduction</h2>
+<p>Linear regression models a linear relationship between input features <strong>X</strong> and a target vector <strong>y</strong>. Using matrix operations simplifies computation and scales better for large datasets.</p>
+<hr />
+<h2 id="data-representation">Data Representation</h2>
+<p>Let:</p>
+<ul>
+<li><span class="arithmatex">\(n\)</span>: number of training examples  </li>
+<li><span class="arithmatex">\(d\)</span>: number of features  </li>
+</ul>
+<p>We define:</p>
+<ul>
+<li><span class="arithmatex">\(\mathbf{X} \in \mathbb{R}^{n \times d}\)</span>: feature matrix  </li>
+<li><span class="arithmatex">\(\mathbf{y} \in \mathbb{R}^{n \times 1}\)</span>: target vector  </li>
+<li><span class="arithmatex">\(\beta \in \mathbb{R}^{d \times 1}\)</span>: weight vector</li>
+</ul>
+<div class="arithmatex">\[
+\mathbf{X} =
+\begin{bmatrix}
+x_1^{(1)} &amp; x_2^{(1)} &amp; \dots &amp; x_d^{(1)} \\
+x_1^{(2)} &amp; x_2^{(2)} &amp; \dots &amp; x_d^{(2)} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+x_1^{(n)} &amp; x_2^{(n)} &amp; \dots &amp; x_d^{(n)}
+\end{bmatrix}
+\]</div>
+<hr />
+<h2 id="model-hypothesis">Model Hypothesis</h2>
+<p>Given the dataset in the form of <span class="arithmatex">\((x_i, y_i)\)</span> for <span class="arithmatex">\(i = 1, 2, \dots, n\)</span>, and under the following assumptions:</p>
+<ul>
+<li><span class="arithmatex">\(y_i = \beta x_i + \epsilon_i\)</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>(Linearity assumption)</em>  </li>
+<li><span class="arithmatex">\(\epsilon_i \sim \mathcal{N}(0, \sigma^2)\)</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>(Noise is normally distributed with zero mean)</em></li>
+</ul>
+<p>Then the expected value of <span class="arithmatex">\(y_i\)</span> conditioned on <span class="arithmatex">\(x_i\)</span> is:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\hat{y}_i &amp;= \mathbb{E}[y_i \mid x_i] \\
+         &amp;= \mathbb{E}[\beta x_i + \epsilon_i] \\
+         &amp;= \beta x_i + \mathbb{E}[\epsilon_i] \\
+         &amp;= \beta x_i
+\end{aligned}
+\]</div>
+<p>Hence, the predicted output is a linear function of the input.</p>
+<h3 id="matrix-form">Matrix Form</h3>
+<p>The model hypothesis in matrix form is:</p>
+<div class="arithmatex">\[
+\hat{\mathbf{y}} = \mathbf{X} \beta
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(\mathbf{X} \in \mathbb{R}^{n \times d}\)</span> is the feature matrix  </li>
+<li><span class="arithmatex">\(\beta \in \mathbb{R}^{d \times 1}\)</span> is the weight vector  </li>
+<li><span class="arithmatex">\(\hat{\mathbf{y}} \in \mathbb{R}^{n \times 1}\)</span> is the vector of predictions</li>
+</ul>
+<hr />
+<h2 id="loss-function">Loss Function</h2>
+<p>To derive the loss function for linear regression, we start by modeling the data generation process probabilistically.</p>
+<h3 id="assumption-gaussian-noise-model">Assumption: Gaussian Noise Model</h3>
+<p>We assume that the observed outputs <span class="arithmatex">\(y_i\)</span> are generated from a linear model with additive Gaussian noise:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+y_i &amp;= \mathbf{x}_i \beta + \epsilon_i, \quad \epsilon_i \sim \mathcal{N}(0, \sigma^2)\\
+\hat{y}_i&amp;= \mathbf{x}_i \beta
+\end{aligned}
+\]</div>
+<p>Then, the conditional probability of observing <span class="arithmatex">\(y_i\)</span> given <span class="arithmatex">\(\mathbf{x}_i\)</span> and the parameters <span class="arithmatex">\(\beta\)</span> is:</p>
+<div class="arithmatex">\[
+p(y_i \mid \mathbf{x}_i; \beta) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left( -\frac{(y_i - \mathbf{x}_i \beta)^2}{2\sigma^2} \right)
+\]</div>
+<h3 id="likelihood">Likelihood</h3>
+<div class="arithmatex">\[
+\mathcal{L}(\beta) = \prod_{i=1}^n p(y_i \mid \mathbf{x}_i; \beta) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left( -\frac{(y_i - \mathbf{x}_i \beta)^2}{2\sigma^2} \right)
+\]</div>
+<h3 id="log-likelihood">Log-Likelihood</h3>
+<p>To simplify, take the <strong>log-likelihood</strong>:</p>
+<div class="arithmatex">\[
+\log \mathcal{L}(\beta) = -\frac{n}{2} \log(2\pi \sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^n (y_i - \mathbf{x}_i\beta)^2
+\]</div>
+<h3 id="maximum-log-likelihood-estimator-mle">Maximum Log-likelihood Estimator (MLE)</h3>
+<div class="arithmatex">\[\hat{\beta} = \arg\max_{\beta} \left( -\frac{n}{2} \log(2\pi \sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^n (y_i - \mathbf{x}_i \beta)^2 \right)\]</div>
+<p>Since <span class="arithmatex">\(\sigma^2\)</span> is constant and we want to <strong>maximize the log-likelihood</strong>, this is equivalent to <strong>minimizing the negative log-likelihood</strong> (NLL):</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\hat{\beta} &amp;= \arg\min_{\beta} \left(\frac{1}{2\sigma^2} \sum_{i=1}^n (y_i - \mathbf{x}_i \beta)^2\right)\\
+&amp;= \arg\min_{\beta} \left(\frac{1}{2\sigma^2} \sum_{i=1}^n (y_i - \hat{y}_i)^2\right) \text{ since }\hat{y}_i&amp;= \mathbf{x}_i \beta
+\end{aligned}
+\]</div>
+<p>Ignoring constants, minimizing NLL is equivalent to minimizing the <strong>Mean Squared Error (MSE)</strong>:</p>
+<div class="arithmatex">\[
+\hat{\beta} = \arg\min_{\beta} \left(\sum_{i=1}^n (y_i - \hat{y}_i)^2\right)
+\]</div>
+<h3 id="final-loss-function-mse">Final Loss Function (MSE)</h3>
+<p>In matrix form:</p>
+<div class="arithmatex">\[
+\mathcal{L}(\beta) = \frac{1}{n} \| \mathbf{y} - \mathbf{X} \beta\|_2^2
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(\mathbf{X} \in \mathbb{R}^{n \times d}\)</span></li>
+<li><span class="arithmatex">\(\mathbf{y} \in \mathbb{R}^{n \times 1}\)</span></li>
+<li><span class="arithmatex">\(\beta \in \mathbb{R}^{d \times 1}\)</span></li>
+</ul>
+<hr />
+<h2 id="gradient-of-the-loss-function">Gradient of the Loss Function</h2>
+<p>We begin with the <strong>Mean Squared Error (MSE)</strong> loss function in matrix form as shown above.</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathcal{L}(\beta) &amp;= \frac{1}{n} \| \mathbf{y} - \mathbf{X} \beta\|_2^2\\
+                   &amp;= \frac{1}{n} (\mathbf{y} - \mathbf{X} \beta)^\top (\mathbf{y} - \mathbf{X} \beta)
+\end{aligned}
+\]</div>
+<p>Let’s expand the inner product:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathcal{L}(\beta)
+&amp;= \frac{1}{n} \left( \mathbf{y}^\top \mathbf{y} - 2 \mathbf{y}^\top \mathbf{X} \beta + \beta^\top \mathbf{X}^\top \mathbf{X} \beta \right)
+\end{aligned}
+\]</div>
+<p>Now, we compute the gradient of each term with respect to <span class="arithmatex">\(\beta\)</span>:</p>
+<ul>
+<li><span class="arithmatex">\(\nabla_\beta(\mathbf{y}^\top \mathbf{y}) = 0\)</span> (no <span class="arithmatex">\(\beta\)</span> involved)  </li>
+<li><span class="arithmatex">\(\nabla_\beta(-2 \mathbf{y}^\top \mathbf{X} \beta) = -2 \mathbf{X}^\top \mathbf{y}\)</span>  </li>
+<li><span class="arithmatex">\(\nabla_\beta(\beta^\top \mathbf{X}^\top \mathbf{X} \beta) = 2 \mathbf{X}^\top \mathbf{X} \beta\)</span></li>
+</ul>
+<p>Putting it all together:</p>
+<div class="arithmatex">\[
+\nabla_\beta \mathcal{L}(\beta) = \frac{1}{n} \left( -2 \mathbf{X}^\top \mathbf{y} + 2 \mathbf{X}^\top \mathbf{X} \beta \right)
+\]</div>
+<p>To simplify the expression we factor out the 2 which gives the gradient of the MSE loss with respect to <span class="arithmatex">\(\beta\)</span>:</p>
+<div class="arithmatex">\[
+\nabla_\beta \mathcal{L}(\beta) = \frac{2}{n} \left( \mathbf{X}^\top \mathbf{X} \beta - \mathbf{X}^\top \mathbf{y} \right)
+\]</div>
+<p>This gradient is used to perform parameter updates in <strong>Gradient Descent</strong>:</p>
+<div class="arithmatex">\[
+\beta_1 = \beta_0 - \alpha \cdot \nabla_\beta \mathcal{L}(\beta_0)
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(\alpha\)</span> is the learning rate</li>
+</ul>
+<h2 id="solving-for-beta-normal-equation">Solving for <span class="arithmatex">\(\beta\)</span> (Normal Equation)</h2>
+<p>We can find the optimal <span class="arithmatex">\(\beta\)</span> by setting the gradient of the loss function to zero:</p>
+<div class="arithmatex">\[
+\nabla_\beta \mathcal{L}(\beta) = \frac{2}{n} \left( \mathbf{X}^\top \mathbf{X} \beta - \mathbf{X}^\top \mathbf{y} \right) = 0
+\]</div>
+<p>Multiplying both sides by <span class="arithmatex">\(\frac{n}{2}\)</span>:</p>
+<div class="arithmatex">\[
+\mathbf{X}^\top \mathbf{X} \beta = \mathbf{X}^\top \mathbf{y}
+\]</div>
+<p>Solving for <span class="arithmatex">\(\beta\)</span> gives the <strong>closed-form solution</strong> (also called the <strong>normal equation</strong>):</p>
+<div class="arithmatex">\[
+\hat{\beta} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}
+\]</div>
+<h3 id="issue-non-invertibility-of-mathbfxtop-mathbfx">Issue: Non-Invertibility of <span class="arithmatex">\(\mathbf{X}^\top \mathbf{X}\)</span></h3>
+<p>In practice, the matrix <span class="arithmatex">\(\mathbf{X}^\top \mathbf{X}\)</span> may not be invertible if:</p>
+<ul>
+<li>Features are <strong>linearly dependent</strong> (i.e., multicollinearity)</li>
+<li>The number of features <span class="arithmatex">\(d\)</span> is <strong>greater than</strong> the number of samples <span class="arithmatex">\(n\)</span> (underdetermined system)</li>
+<li>Numerical precision issues due to <strong>ill-conditioning</strong></li>
+</ul>
+<p>In these cases, we cannot compute <span class="arithmatex">\( \hat{\beta} \)</span> directly using the normal equation.</p>
+<h3 id="solution-add-regularization-ridge-regression">Solution: Add Regularization (Ridge Regression)</h3>
+<p>To address non-invertibility and reduce overfitting, we add an <strong>L2 regularization term</strong> (also known as <strong>Ridge Regression</strong>):</p>
+<p>Modified loss function:</p>
+<div class="arithmatex">\[
+\mathcal{L}_{\text{ridge}}(\beta) = \frac{1}{n} \| \mathbf{y} - \mathbf{X} \beta \|_2^2 + \lambda \| \beta \|_2^2
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(\lambda &gt; 0\)</span> is the regularization strength</li>
+<li><span class="arithmatex">\(\| \beta \|_2^2 = \beta^\top \beta\)</span></li>
+</ul>
+<h3 id="closed-form-solution-with-regularization">Closed-Form Solution with Regularization</h3>
+<p>Taking the gradient and setting it to zero:</p>
+<div class="arithmatex">\[
+\nabla_\beta \mathcal{L}_{\text{ridge}}(\beta) = \frac{2}{n} \mathbf{X}^\top (\mathbf{X} \beta - \mathbf{y}) + 2 \lambda \beta = 0
+\]</div>
+<p>Leads to the regularized normal equation:</p>
+<div class="arithmatex">\[
+\hat{\beta}_{\text{ridge}} = \frac{1}{n} \left( (\mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I})^{-1} \mathbf{X}^\top \mathbf{y} \right)
+\]</div>
+<p>This ensures invertibility even when <span class="arithmatex">\(\mathbf{X}^\top \mathbf{X}\)</span> is singular, due to the identity matrix <span class="arithmatex">\(\mathbf{I}\)</span> added to it.</p>
+<hr />
+<h2 id="gradient-descent-algorithms">Gradient Descent Algorithms</h2>
+<p>Gradient Descent is an iterative optimization algorithm used to minimize the loss function by updating the parameters in the direction of the negative gradient.</p>
+<p>We update the parameter vector <span class="arithmatex">\(\beta\)</span> using the rule:</p>
+<div class="arithmatex">\[
+\beta = \beta - \alpha \cdot \nabla_\beta \mathcal{L}(\beta)
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(\alpha\)</span> is the learning rate
+- <span class="arithmatex">\(\nabla_\beta \mathcal{L}(\beta)\)</span> is the gradient of the loss function with respect to <span class="arithmatex">\(\beta\)</span></p>
+<p>In this section, we describe three variations of the <strong>Gradient Descent</strong> (GD) algorithm used for training a linear regression model: <strong>Batch Gradient Descent (BGD)</strong>, <strong>Stochastic Gradient Descent (SGD)</strong>, and <strong>Mini-Batch Gradient Descent (MBGD)</strong>.</p>
+<hr />
+<h2 id="1-batch-gradient-descent">1. Batch Gradient Descent</h2>
+<p>Batch Gradient Descent computes the gradient using the <strong>entire dataset</strong> and updates the parameters at the end of each epoch.</p>
+<h3 id="input"><strong>Input:</strong></h3>
+<ul>
+<li>Dataset: <span class="arithmatex">\(D = \{ (\mathbf{x}_i, y_i) \}_{i=1}^{n}\)</span> </li>
+<li>Learning rate: <span class="arithmatex">\(\epsilon\)</span>  </li>
+<li>Number of epochs  </li>
+<li>Tolerance: <code>tol</code></li>
+</ul>
+<h3 id="output"><strong>Output:</strong></h3>
+<ul>
+<li>Optimized weight vector <span class="arithmatex">\(\beta\)</span></li>
+</ul>
+<h3 id="algorithm"><strong>Algorithm:</strong></h3>
+<div class="highlight"><pre><span></span><code>1. Initialize β₀ = 0 ∈ ℝᵈ
+2. for epoch in number of epochs do:
+    3. Shuffle the dataset D
+    4. Compute predictions: ŷ = X β₀
+    5. Compute loss: L = (1/n) ‖ŷ − y‖²
+    6. Compute gradient: ∇βf(β₀) = (2/n)  (XᵀXβ₀ − Xᵀy)
+    7. Update weights: β₁ = β₀ − ε ∇βf(β₀)
+    8. if ‖y − X β₁‖² &lt; tol then:
+        9. break
+    10. β₀ = β₁
+</code></pre></div>
+<h2 id="2-stochastic-gradient-descent">2. Stochastic Gradient Descent</h2>
+<p>Stochastic Gradient Descent updates the weights after processing each individual <strong>data point</strong>. This approach tends to converge faster, but the updates are noisy.</p>
+<h3 id="input_1"><strong>Input:</strong></h3>
+<ul>
+<li>Dataset: <span class="arithmatex">\(D = \{ (\mathbf{x}_i, y_i) \}_{i=1}^{n}\)</span>  </li>
+<li>Learning rate: <span class="arithmatex">\(\epsilon\)</span>  </li>
+<li>Number of epochs  </li>
+<li>Tolerance: <code>tol</code></li>
+</ul>
+<h3 id="output_1"><strong>Output:</strong></h3>
+<ul>
+<li>Optimized weight vector <span class="arithmatex">\(\beta\)</span></li>
+</ul>
+<h3 id="algorithm_1"><strong>Algorithm:</strong></h3>
+<div class="highlight"><pre><span></span><code>1. Initialize β₀ = 0 ∈ ℝᵈ
+2. for epoch in number of epochs do:
+    3. Shuffle the dataset D
+    4. for i = 1 to n do:
+        5. Compute prediction for observation i: ŷᵢ = xᵢᵀ β₀
+        6. Compute loss: L = (ŷᵢ − yᵢ)²
+        7. Compute gradient: ∇βf(β₀) = 2 ( xᵢxᵢᵀ β₀ − xᵢyᵢ ) 
+        8. Update weights: β₁ = β₀ − ε ∇βf(β₀)
+        9. if (ŷᵢ − yᵢ)² &lt; tol then:
+            10. break
+    11. β₀ = β₁
+</code></pre></div>
+<hr />
+<h2 id="3-stochastic-gradient-descent-with-momentum">3. Stochastic Gradient Descent with Momentum</h2>
+<p><strong>Momentum</strong> is an enhancement to standard SGD that helps accelerate gradient descent in the relevant direction and dampens oscillations. It is particularly useful in scenarios where the optimization landscape has high curvature, small but consistent gradients, or noisy updates.</p>
+<h3 id="motivation"><strong>Motivation:</strong></h3>
+<ul>
+<li><strong>Variance in SGD</strong>: Helps smooth out noisy gradients by using an exponentially decaying moving average.</li>
+<li><strong>Poor conditioning</strong>: Helps accelerate through narrow valleys and avoids getting stuck.</li>
+</ul>
+<h3 id="concept"><strong>Concept:</strong></h3>
+<p>We introduce a <strong>velocity vector</strong> <span class="arithmatex">\(v\)</span> that accumulates the exponentially decaying average of past gradients:</p>
+<ul>
+<li><span class="arithmatex">\(v\)</span> is initialized to zero</li>
+<li><span class="arithmatex">\(\beta\)</span> is the <strong>momentum coefficient</strong> (typically <span class="arithmatex">\(\beta \in [0.9, 0.99]\)</span>)</li>
+<li><span class="arithmatex">\(\epsilon\)</span> is the learning rate</li>
+</ul>
+<h3 id="update-rule"><strong>Update Rule:</strong></h3>
+<div class="arithmatex">\[
+v_t = \beta v_{t-1} + (1 - \beta) \nabla_\beta \mathcal{L}(\beta_{t-1})
+\]</div>
+<div class="arithmatex">\[
+\beta_t = \beta_{t-1} - \epsilon v_t
+\]</div>
+<p>This adds &ldquo;inertia&rdquo; to the parameter updates, similar to how momentum works in physics.</p>
+<hr />
+<h3 id="algorithm_2"><strong>Algorithm:</strong></h3>
+<p><strong>Input:</strong></p>
+<ul>
+<li>Dataset: <span class="arithmatex">\(D = \{ (\mathbf{x}_i, y_i) \}_{i=1}^{n}\)</span>  </li>
+<li>Learning rate: <span class="arithmatex">\(\epsilon\)</span>  </li>
+<li>Momentum coefficient: <span class="arithmatex">\(\beta\)</span>  </li>
+<li>Number of epochs  </li>
+<li>Tolerance: <code>tol</code></li>
+</ul>
+<p><strong>Output:</strong></p>
+<ul>
+<li>Optimized weight vector <span class="arithmatex">\(\beta\)</span></li>
+</ul>
+<div class="highlight"><pre><span></span><code>1. Initialize β₀ = 0 ∈ ℝᵈ
+2. Initialize velocity vector v = 0 ∈ ℝᵈ
+3. for epoch in number of epochs do:
+    4. Shuffle the dataset D
+    5. for i = 1 to n do:
+        6. Compute prediction for observation i: ŷᵢ = xᵢᵀ β₀
+        7. Compute gradient: ∇βf(β₀) = 2 ( xᵢxᵢᵀ β₀ − xᵢyᵢ ) 
+        8. Update velocity: v = β ⋅ v + (1 - β) ⋅ ∇βf(β₀)
+        9. Update weights: β₁ = β₀ − ε ⋅ v
+        10. if (ŷᵢ − yᵢ)² &lt; tol then:
+            11. break
+    12. β₀ = β₁
+</code></pre></div>
+<hr />
+<h2 id="4-mini-batch-gradient-descent">4. Mini-Batch Gradient Descent</h2>
+<p>Mini-Batch Gradient Descent updates the weights after processing small <strong>batches</strong> of data, offering a balance between the computational efficiency of BGD and the faster convergence of SGD.</p>
+<h3 id="input_2"><strong>Input:</strong></h3>
+<ul>
+<li>Dataset: <span class="arithmatex">\(D = \{ (\mathbf{x}_i, y_i) \}_{i=1}^{n}\)</span>  </li>
+<li>Learning rate: <span class="arithmatex">\(\epsilon\)</span> </li>
+<li>Number of epochs  </li>
+<li>Batch size: <span class="arithmatex">\(B\)</span></li>
+<li>Tolerance: <code>tol</code></li>
+</ul>
+<h3 id="output_2"><strong>Output:</strong></h3>
+<ul>
+<li>Optimized weight vector <span class="arithmatex">\(\beta\)</span></li>
+</ul>
+<h3 id="algorithm_3"><strong>Algorithm:</strong></h3>
+<div class="highlight"><pre><span></span><code>1. Initialize β₀ = 0 ∈ ℝᵈ
+2. for epoch in number of epochs do:
+    3. Shuffle the dataset D
+    4. Partition data into n_batches = ceil(n / B)
+    5. for j = 1 to n_batches do:
+        6. Get mini-batch (Xⱼ, yⱼ)
+        7. Compute prediction: ŷⱼ = Xⱼ β₀
+        8. Compute loss: L = (1/B) ‖ŷⱼ − yⱼ‖²
+        9. Compute gradient: ∇βf(β₀) = (2/B)  (XⱼᵀXⱼ β₀ − Xⱼᵀyⱼ)
+        10. Update weights: β₁ = β₀ − ε ∇βf(β₀)
+        11. if ‖yⱼ − Xⱼ β₁‖² &lt; tol then:
+            12. break
+    13. β₀ = β₁
+</code></pre></div>
+<hr />
+<h2 id="conclusion">Conclusion</h2>
+<p>Linear Regression is foundational in machine learning and serves as the basis for more complex models. By understanding how to train it using different optimization methods like GD, SGD, and mini-batch GD, one gains deep insights into how models learn from data.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Introduction
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../logistic_regression/" class="md-footer__link md-footer__link--next" aria-label="Next: Logistic Regression">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Logistic Regression
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.math", "navigation.footer", "navigation.tabs", "toc.integrate", "header.autohide"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
