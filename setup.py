@@ -8,7 +8,7 @@ setup(
     description="A Python package implementing fundamental machine learning algorithms from scratch with NumPy.",
     long_description=open('long_description.md').read(),
     long_description_content_type="text/markdown",
-    url="https://ekbarkacha.github.io/data-structure-package-documentation/",
+    url="https://ekbarkacha.github.io/ek_ml_package/",
     packages=find_packages(),
     install_requires=["numpy","matplotlib"],
     classifiers=[
@@ -17,5 +17,7 @@ setup(
         "Operating System :: OS Independent",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
     ],
+    license="MIT",
+    keywords="machine learning numpy algorithms ml",
     python_requires='>=3.6',
 )

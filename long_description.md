@@ -5,24 +5,27 @@
 
 ## Key Features
 
+* **Introduction to Machine Learning**
+ 
+  * [Introduction](https://ekbarkacha.github.io/ek_ml_package/)
 * **Supervised Learning Algorithms:**
 
-  * Linear Regression
-  * Logistic Regression
-  * K-Nearest Neighbors (KNN)
-  * Perceptron
-  * Neural Network (from first principles)
-  * Gaussian Discriminant Analysis (GDA)
+  * [Linear Regression](https://ekbarkacha.github.io/ek_ml_package/linear_regression/)
+  * [Logistic Regression](https://ekbarkacha.github.io/ek_ml_package/logistic_regression/)
+  * [K-Nearest Neighbors (KNN)](https://ekbarkacha.github.io/ek_ml_package/knn/)
+  * [Perceptron](https://ekbarkacha.github.io/ek_ml_package/perceptron/)
+  * [Neural Network (from first principles)](https://ekbarkacha.github.io/ek_ml_package/neural_network/)
+  * [Gaussian Discriminant Analysis (GDA)](https://ekbarkacha.github.io/ek_ml_package/gaussian_discriminant_analysis/)
 
 * **Unsupervised Learning Algorithms:**
 
-  * Principal Component Analysis (PCA)
-  * K-Means Clustering
+  * [Principal Component Analysis (PCA)](https://ekbarkacha.github.io/ek_ml_package/pca/)
+  * [K-Means Clustering](https://ekbarkacha.github.io/ek_ml_package/kmeans/)
 
 * **Utilities:**
 
-  * Common Activation Functions (ReLU, Sigmoid, Tanh, etc.)
-  * Loss Functions (Mean Squared Error, Cross-Entropy, etc.)
+  * [Common Activation Functions (ReLU, Sigmoid, Tanh, etc.)](https://ekbarkacha.github.io/ek_ml_package/activation_function/)
+  * [Loss Functions (Mean Squared Error, Cross-Entropy, etc.)](https://ekbarkacha.github.io/ek_ml_package/loss_function/)
 
 ## Why Use ek_ml_package?
 
@@ -41,7 +44,7 @@ pip install ek_ml_package
 For the latest development version, clone the repository and install manually:
 
 ```bash
-git clone https://github.com/your-username/ek_ml_package.git
+git clone https://github.com/ekbarkacha/ek_ml_package.git
 cd ek_ml_package
 pip install -r requirements.txt
 pip install -e .
@@ -306,14 +309,14 @@ print("Predicted clusters for new points:", predicted_labels)
 
 Extensive documentation and tutorials are available to guide you through the theory and practical implementations of each algorithm:
 
- [View Documentation](https://yourusername.github.io/ek_ml_package/)
+ [View Documentation](https://ekbarkacha.github.io/ek_ml_package/)
 
 The documentation covers:
 
 - Intuition and theory behind each algorithm  
 - Step-by-step derivations and key concepts  
 
-For full implementations, check out the Jupyter notebooks in the [notebooks/](notebooks/) folder:
+For full implementations, check out the Jupyter notebooks in the [notebooks](https://github.com/ekbarkacha/ek_ml_package/tree/main/notebooks) folder:
 - Hands-on code from scratch using Python & NumPy
 - Visualizations, training steps, and outputs
 - Aligned with each theory doc (e.g., `linear_regression.md` &#8596;`linear_regression.ipynb`)
@@ -322,4 +325,3 @@ For full implementations, check out the Jupyter notebooks in the [notebooks/](no
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
-
