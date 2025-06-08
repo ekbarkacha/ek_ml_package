@@ -1,0 +1,17 @@
+# About the Author
+
+Hello! I'm **Emmanuel**, a student in the **African Master’s in Machine Intelligence (AMMI)** program, pursuing a Master’s degree in Machine Intelligence.
+
+This site was inspired by the coursework I'm undertaking as part of the AMMI program particularly the *Foundations to Machine Learning and Deep Learning* module. I'm especially grateful to my tutors and to **Prof. Moustapha Cissé**, whose mentorship and teaching have deeply influenced my learning journey.
+
+### Contact Information:
+- **Email:** [ebarkacha@aimsammi.org](mailto:ebarkacha@aimsammi.org)   
+- **LinkedIn:** [www.linkedin.com/in/emmanuel-kirui-barkacha-493807294](https://www.linkedin.com/in/emmanuel-kirui-barkacha-493807294)  
+- **GitHub:**  [https://github.com/ekbarkacha](https://github.com/ekbarkacha) 
+
+### Interests:
+- Neural networks and deep learning  
+- Applied machine learning  
+- Responsible AI and fairness in machine learning  
+
+This site serves as a platform for sharing my notes, tutorials and practical insights from my studies with the hope it can help others learning ML as well.

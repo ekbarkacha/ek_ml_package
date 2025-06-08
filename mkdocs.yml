@@ -1,0 +1,50 @@
+site_name: Machine Learning
+theme:
+  #logo: assets/logo.png
+  #favicon: assets/favicon.ico
+  name: material
+  features:
+    - content.code.copy
+    - content.math
+    - navigation.footer      # Previous/Next buttons
+    - navigation.tabs        # Tabs for top-level sections
+    - toc.integrate          # In-page TOC integrates on left
+    - header.autohide        # Auto-hides header when scrolling
+  toc:
+    include: []
+
+markdown_extensions:
+  - smarty
+  - toc:
+      toc_depth : "1-1"
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+
+nav:
+  - Introduction: index.md
+
+  - Supervised Learning:
+      - Linear Regression: linear_regression.md
+      - Logistic Regression: logistic_regression.md
+      - Gaussian Discriminant Analysis: gaussian_discriminant_analysis.md
+      - K-Nearest Neighbors (KNN): knn.md
+      - Perceptron Algorithm: perceptron.md
+      - Neural Networks: neural_network.md
+
+  - Unsupervised Learning:
+      - K-Means Clustering: kmeans.md
+      - Principal Component Analysis (PCA): pca.md
+
+  - Supporting Concepts:
+      - Activation Functions: activation_function.md
+      - Loss Functions: loss_function.md
+
+  - Notebook Gallery: notebooks.md
+
+  - About Author: about.md
