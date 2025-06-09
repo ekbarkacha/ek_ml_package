@@ -865,7 +865,7 @@ L(w) = \min_w \;  \left\| w^\top x - y \right\|^2
 <p>But the above solution exists only if <span class="arithmatex">\(X^\top X\)</span> is invertible, i.e., the inverse exists.</p>
 <p>If the inverse doesn&rsquo;t exist, we introduce a regularizer. Let&rsquo;s use the <span class="arithmatex">\(L_2\)</span> regularizer (also known as ridge), where we will have a new objective function given as:</p>
 <div class="arithmatex">\[
-L_{\text{ridge}}(w) = \min_w \;  \left\| w^\top X - Y \right\|_2^2 + \lambda  \left\| w \right\|_2^2
+L_{\text{ridge}}(w) = \min_w \;  \left\| Xw - Y \right\|_2^2 + \lambda  \left\| w \right\|_2^2
 \]</div>
 <p>Where <span class="arithmatex">\(\lambda &gt; 0\)</span> (positive), since if it&rsquo;s negative and <span class="arithmatex">\(\left\| w \right\|_2^2\)</span> is too big, then our <span class="arithmatex">\(L_{\text{ridge}}(w)\)</span> will not be bounded.</p>
 <p>Let&rsquo;s find the analytic solution of <span class="arithmatex">\(L_{\text{ridge}}(w)\)</span>:</p>
@@ -912,7 +912,7 @@ L_{\text{ridge}}(w) = \min_w \;  \left\| w^\top X - Y \right\|_2^2 + \lambda  \l
 <div class="arithmatex">\[
 Loss_{MSE} = \frac{1}{n} \sum_{i=1}^{n} \left( f(x_i) - y_i \right)^2 = \frac{1}{n} \sum_{i=1}^{n} \left( w^\top x_i - y_i \right)^2
 \]</div>
-<p>Given the loss/criterion abive our aim is to find a function <span class="arithmatex">\(\hat{f}\)</span> which minimizes our loss i.e
+<p>Given the loss/criterion above our aim is to find a function <span class="arithmatex">\(\hat{f}\)</span> which minimizes our loss i.e
 $$
 \hat{f} = \arg\min_{f \in \mathcal{H}} \; \frac{1}{n} \sum_{i=1}^{n} \left( f(x_i) - y_i \right)^2
 $$ 
@@ -1095,7 +1095,7 @@ y = f(x)+\epsilon
 \]</div>
 <p>where;</p>
 <div class="arithmatex">\[
-\mathbb{E}_{\mathcal{D}, \epsilon}[(y - \hat{f}(x))^2] = \underbrace{(f(x) - \bar{f}(x))^2}_{\text{Bias}^2} + \underbrace{\mathbb{E}_{\mathcal{D}}[(\hat{f}(x) - \bar{f}(x))^2]}_{\text{Variance}} + \underbrace{\sigma^2}_{\text{Noise}}
+\mathbb{E}_{\mathcal{D}, \epsilon}[(y - \hat{f}(x))^2] = \underbrace{\mathbb{E}_{\mathcal{D}}[(f(x) - \bar{f}(x))^2]}_{\text{Bias}^2} + \underbrace{\mathbb{E}_{\mathcal{D}}[(\hat{f}(x) - \bar{f}(x))^2]}_{\text{Variance}} + \underbrace{\sigma^2}_{\text{Noise}}
 \]</div>
 <p>Thus the Bias Variance threshold is given as;</p>
 <div class="arithmatex">\[
@@ -1130,7 +1130,7 @@ y = f(x)+\epsilon
 <td>** Dimesionality Reduction</td>
 </tr>
 <tr>
-<td>** Increase the features</td>
+<td>** Change Hypothesis class</td>
 <td>** Data Augmentation</td>
 </tr>
 </tbody>
@@ -1154,7 +1154,7 @@ y = f(x)+\epsilon
                &amp;= \prod_{i=1}^{n} P(y_i | x_i; w) \quad \text{ since they are identically ditributed}
 \end{align*}
 \]</div>
-<p>Since the product of probabilities tends to zero or are very small (i.e between 0 and 1) we take its <span class="arithmatex">\(log\)</span> as <span class="arithmatex">\(log\)</span> is an increasing function to have <strong>log-likelihood</strong>:</p>
+<p>Since the product of probabilities tends to zero or are very small (i.e between 0 and 1) we take its <span class="arithmatex">\(log\)</span> as <span class="arithmatex">\(log\)</span> is an increasing function and it changes the product of probabilities in to summation which simplifies computation to have <strong>log-likelihood</strong>:</p>
 <div class="arithmatex">\[
 \begin{align*}
 \log \mathcal{L}(w) &amp;= \log \prod_{i=1}^{n} P(y_i | x_i; w)\\
@@ -1478,12 +1478,12 @@ f(\bar{w}) - f(w^*) \leq \frac{B \rho}{\sqrt{T}}
 <div class="arithmatex">\[
 w^{(t+1)} = w^{(t)} - \eta \nabla f(w^{(t)}) = w^{(t)} - \eta \left( \frac{1}{n} \sum_{i=1}^{n} \nabla f_i(w^{(t)}) \right)
 \]</div>
-<p>Here, $ f(w) = \frac{1}{n} \sum_{i=1}^n f_i(w) $, where each $ f_i(w) $ typically represents the loss on the $ i $-th training example.</p>
-<p>In Stochastic Gradient Descent, the full gradient $ \nabla f(w^{(t)}) $ is approximated by the gradient on a single example:</p>
+<p>Here, <span class="arithmatex">\(f(w) = \frac{1}{n} \sum_{i=1}^n f_i(w)\)</span>, where each <span class="arithmatex">\(f_i(w)\)</span> typically represents the loss on the <span class="arithmatex">\(i\)</span>-th training example.</p>
+<p>In Stochastic Gradient Descent, the full gradient <span class="arithmatex">\(\nabla f(w^{(t)})\)</span> is approximated by the gradient on a single example:</p>
 <div class="arithmatex">\[
 w^{(t+1)} = w^{(t)} - \eta \nabla f_i(w^{(t)})
 \]</div>
-<p>where $ i $ is chosen uniformly at random from $ {1, \dots, n} $ at each iteration.</p>
+<p>where <span class="arithmatex">\(i\)</span> is chosen uniformly at random from <span class="arithmatex">\(\{1, \dots, n\}\)</span> at each iteration.</p>
 <p>This stochastic estimate is unbiased but introduces variance, which affects convergence stability:</p>
 <div class="arithmatex">\[
 \mathbb{E}_i [\nabla f_i(w)] = \nabla f(w)
@@ -1649,7 +1649,7 @@ A_2 = \sigma (Z_2) \quad \text{where } A_2 \in \mathbb{R}^{h_2\times n}
 \]</div>
 <p>Matrix form:</p>
 <div class="arithmatex">\[
-\mathcal{L} = - \frac{1}{n} \left[ \mathcal{Y} \log(A_2) + (1 - \mathcal{Y}) \log(1 - A_2) \right]
+\mathcal{L} = - \frac{1}{n} \left[ Y \log(A_2) + (1 - Y) \log(1 - A_2) \right]
 \]</div>
 <h3 id="backward-propagation">Backward Propagation</h3>
 <p>Backpropagation, or backward propagation of errors, is an algorithm working from the output nodes to the input nodes of a neural network using the chain rule to compute how much each activation unit contributed to the overall error.</p>
