@@ -116,7 +116,7 @@ But the above solution exists only if $X^\top X$ is invertible, i.e., the invers
 If the inverse doesn't exist, we introduce a regularizer. Let's use the $L_2$ regularizer (also known as ridge), where we will have a new objective function given as:
 
 $$
-L_{\text{ridge}}(w) = \min_w \;  \left\| w^\top X - Y \right\|_2^2 + \lambda  \left\| w \right\|_2^2
+L_{\text{ridge}}(w) = \min_w \;  \left\| Xw - Y \right\|_2^2 + \lambda  \left\| w \right\|_2^2
 $$
 
 Where $\lambda > 0$ (positive), since if it's negative and $\left\| w \right\|_2^2$ is too big, then our $L_{\text{ridge}}(w)$ will not be bounded.
@@ -182,7 +182,7 @@ $$
 Loss_{MSE} = \frac{1}{n} \sum_{i=1}^{n} \left( f(x_i) - y_i \right)^2 = \frac{1}{n} \sum_{i=1}^{n} \left( w^\top x_i - y_i \right)^2
 $$
 
-Given the loss/criterion abive our aim is to find a function $\hat{f}$ which minimizes our loss i.e
+Given the loss/criterion above our aim is to find a function $\hat{f}$ which minimizes our loss i.e
 $$
 \hat{f} = \arg\min_{f \in \mathcal{H}} \; \frac{1}{n} \sum_{i=1}^{n} \left( f(x_i) - y_i \right)^2
 $$ 
@@ -403,7 +403,7 @@ $$
 where;
 
 $$
-\mathbb{E}_{\mathcal{D}, \epsilon}[(y - \hat{f}(x))^2] = \underbrace{(f(x) - \bar{f}(x))^2}_{\text{Bias}^2} + \underbrace{\mathbb{E}_{\mathcal{D}}[(\hat{f}(x) - \bar{f}(x))^2]}_{\text{Variance}} + \underbrace{\sigma^2}_{\text{Noise}}
+\mathbb{E}_{\mathcal{D}, \epsilon}[(y - \hat{f}(x))^2] = \underbrace{\mathbb{E}_{\mathcal{D}}[(f(x) - \bar{f}(x))^2]}_{\text{Bias}^2} + \underbrace{\mathbb{E}_{\mathcal{D}}[(\hat{f}(x) - \bar{f}(x))^2]}_{\text{Variance}} + \underbrace{\sigma^2}_{\text{Noise}}
 $$
 
 
@@ -420,7 +420,7 @@ $$
 |  ** Train longer                    | - Small training data               |
 | - Model is too simple               |  ** Feature selection. [1](https://www.analyticsvidhya.com/blog/2016/12/introduction-to-feature-selection-methods-with-an-example-or-how-to-select-the-right-variables/), [2](https://github.com/Younes-Charfaoui/Feature-Selection-Techniques), [3](https://medium.com/@debopamdeycse19/feature-selection-techniques-in-machine-learning-00a261e2574a)               |
 |  ** Increase the features           |  ** Dimesionality Reduction         |
-|  ** Increase the features           |  ** Data Augmentation               |
+|  ** Change Hypothesis class         |  ** Data Augmentation               |
 
 
 The above table compares high bias (underfitting) and high variance (overfitting). Entries marked with `**` indicate common **solutions** to address each issue.
@@ -449,7 +449,7 @@ $$
 \end{align*}
 $$
 
-Since the product of probabilities tends to zero or are very small (i.e between 0 and 1) we take its $log$ as $log$ is an increasing function to have **log-likelihood**:
+Since the product of probabilities tends to zero or are very small (i.e between 0 and 1) we take its $log$ as $log$ is an increasing function and it changes the product of probabilities in to summation which simplifies computation to have **log-likelihood**:
 
 $$
 \begin{align*}
@@ -909,15 +909,15 @@ $$
 w^{(t+1)} = w^{(t)} - \eta \nabla f(w^{(t)}) = w^{(t)} - \eta \left( \frac{1}{n} \sum_{i=1}^{n} \nabla f_i(w^{(t)}) \right)
 $$
 
-Here, $ f(w) = \frac{1}{n} \sum_{i=1}^n f_i(w) $, where each $ f_i(w) $ typically represents the loss on the $ i $-th training example.
+Here, $f(w) = \frac{1}{n} \sum_{i=1}^n f_i(w)$, where each $f_i(w)$ typically represents the loss on the $i$-th training example.
 
-In Stochastic Gradient Descent, the full gradient $ \nabla f(w^{(t)}) $ is approximated by the gradient on a single example:
+In Stochastic Gradient Descent, the full gradient $\nabla f(w^{(t)})$ is approximated by the gradient on a single example:
 
 $$
 w^{(t+1)} = w^{(t)} - \eta \nabla f_i(w^{(t)})
 $$
 
-where $ i $ is chosen uniformly at random from $ \{1, \dots, n\} $ at each iteration.
+where $i$ is chosen uniformly at random from $\{1, \dots, n\}$ at each iteration.
 
 This stochastic estimate is unbiased but introduces variance, which affects convergence stability:
 
@@ -1130,7 +1130,7 @@ $$
 Matrix form:
 
 $$
-\mathcal{L} = - \frac{1}{n} \left[ \mathcal{Y} \log(A_2) + (1 - \mathcal{Y}) \log(1 - A_2) \right]
+\mathcal{L} = - \frac{1}{n} \left[ Y \log(A_2) + (1 - Y) \log(1 - A_2) \right]
 $$
 
 
