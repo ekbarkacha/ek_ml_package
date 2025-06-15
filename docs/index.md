@@ -57,10 +57,10 @@ Now we look at one of the common hypothesis spaces known as **linear mapping**, 
 Here our hypothesis is given as:
 
 $$
-f(x) = w^\top x
+f(x) = w^\top x \quad \text{taking } x \in \mathbb{R}^d , w \in \mathbb{R}^d
 $$
 
-where $x$ is known as the input data and $w$ is the weights (coefficients).
+where $x$ is known as the input data, $w$ is the weights (coefficients) and $d$ is number of features.
 
 From the above linear mapping, we can have our objective function as:
 
@@ -68,7 +68,7 @@ $$
 L(w) = \min_w \;  \left\| w^\top x - y \right\|^2
 $$
 
-Now we can find the analytic solution $\hat{w}$ which minimizes our objective function $L(w)$. To solve, we will find the derivative $L(w)$ (gradient) then equate it to zero. Let's solve:
+Now we can find the analytic solution $\hat{w}$ which minimizes our objective function $L(w)$. To solve, we will find the derivative $L(w)$ (gradient) then equate it to zero.Taking $X \in \mathbb{R}^{n\times d},\quad Y \in \mathbb{R}^{n\times 1} \quad \text{and} \quad w \in \mathbb{R}^{d \times 1} $. Let's solve:
 
 $$
 \begin{align*}
